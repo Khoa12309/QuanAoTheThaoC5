@@ -11,8 +11,7 @@ namespace QuanAoTheThaoC5.Configurations
             builder.HasKey(c=>c.Id);
             builder.Property(c => c.Name).HasColumnType("nvarchar(1000)").IsRequired();
             builder.Property(c => c.VoucherCode).HasColumnType("nvarchar(1000)").IsRequired();
-            builder.Property(c => c.Description).HasColumnType("nvarchar(1000)").IsRequired();
-
+            builder.Property(c => c.Description).HasColumnType("nvarchar(1000)").IsRequired();   
         }
     }
 }
