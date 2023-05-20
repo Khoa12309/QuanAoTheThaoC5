@@ -1,13 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using QuanAoTheThaoC5.Models;
 using System.Reflection;
 
-namespace QuanAoTheThaoC5.Models
+namespace QuanAoTheThaoC5.ContextDataBase
 {
-    public class ShoppingDbContext:DbContext
+    public class ShoppingDbContext : DbContext
     {
         public ShoppingDbContext() { }
         public ShoppingDbContext(DbContextOptions<ShoppingDbContext> options) : base(options) { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-N6FK027M;Initial Catalog=QuanAoC5;Persist Security Info=True;User ID=khoaph20877;Password=123456");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
         public DbSet<Product> Products { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<BillDetails> BillDetails { get; set; }
@@ -25,14 +34,6 @@ namespace QuanAoTheThaoC5.Models
         public DbSet<ProductMaterial> ProductMaterials { get; set; }
         public DbSet<ProductMaterialDetails> ProductMaterialDetails { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-DEB8BBEA\SQLEXPRESS;Initial Catalog=QATTC5;User ID=anhpnt32;Password=123456");
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+      
     }
 }

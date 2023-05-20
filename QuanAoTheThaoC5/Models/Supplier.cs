@@ -8,6 +8,6 @@
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string Descripton { get; set; }
-        public virtual IEnumerable<Product> Products { get; set; }
+   
     }
 }
