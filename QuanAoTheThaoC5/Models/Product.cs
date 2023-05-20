@@ -1,4 +1,5 @@
-﻿namespace QuanAoTheThaoC5.Models
+﻿
+namespace QuanAoTheThaoC5.Models
 {
     public class Product
     {
@@ -14,11 +15,11 @@
         public int Quantity { get; set; }
         public double Price { get; set; }
         public int Status { get; set; }
-        // public virtual Category Category { get; set; }
-        // public virtual ProductMaterial ProductMaterial { get; set; }
-        // public virtual Color Color { get; set; }
-        // public virtual Supplier Supplier { get; set; } 
-        // public virtual Size Size { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ProductMaterial ProductMaterial { get; set; }
+        public virtual Color Color { get; set; }
+        public virtual Supplier Supplier { get; set; }
+        public virtual Size Size { get; set; }
 
     }
 }

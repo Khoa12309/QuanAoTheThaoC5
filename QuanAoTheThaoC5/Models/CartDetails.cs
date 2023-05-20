@@ -1,5 +1,6 @@
 ﻿namespace QuanAoTheThaoC5.Models
 {
+
     public class CartDetails
     {
         public int Id { get; set; }
