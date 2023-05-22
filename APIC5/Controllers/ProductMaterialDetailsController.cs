@@ -34,14 +34,25 @@ namespace APIC5.Controllers
 
         // POST api/<ProductMaterialDetailsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public bool Create(Guid IDProductMaterial, Guid IDProduct, string Description)
         {
+            ProductMaterialDetails Item = new ProductMaterialDetails();
+            Item.Id = Guid.NewGuid();
+            Item.Description = Description;
+            Item.IDProduct = IDProduct;
+            Item.IDProductMaterial = IDProductMaterial;
+            return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<ProductMaterialDetailsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public bool Post(Guid id ,Guid IDProductMaterial, Guid IDProduct, string Description)
         {
+            ProductMaterialDetails Item =_allrepo.GetAllItems().FirstOrDefault(c=>c.Id==id);
+            
+            Item.Description = Description;
+          
+            return _allrepo.UpdateItem(Item);
         }
 
         // DELETE api/<ProductMaterialDetailsController>/5
