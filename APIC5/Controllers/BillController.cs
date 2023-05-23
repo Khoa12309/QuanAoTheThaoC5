@@ -16,7 +16,7 @@ namespace APIC5.Controllers
         ShoppingDbContext _context = new ShoppingDbContext();
         public BillController()
         {
-            _allrepo=new AllRepositroies<Bill>(_context,_context.Bills);
+            _allrepo = new AllRepositroies<Bill>(_context, _context.Bills);
         }
         // GET: api/<BillController>
         [HttpGet]
@@ -37,7 +37,7 @@ namespace APIC5.Controllers
         public bool Create(Guid IDUser, Guid IDVoucher, DateTime CreateDate, int Status, double TotalMoney, double TransportFee, string PhoneNumber, string Address)
         {
             Bill Item = new Bill();
-            Item.Id= Guid.NewGuid();
+            Item.Id = Guid.NewGuid();
             Item.IDUser = IDUser;
             Item.IDVoucher = IDVoucher;
             Item.Status = Status;
@@ -45,13 +45,13 @@ namespace APIC5.Controllers
             Item.TransportFee = TransportFee;
             Item.PhoneNumber = PhoneNumber;
             Item.Address = Address;
-            Item.CreateDate = CreateDate;               
+            Item.CreateDate = CreateDate;
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<BillController>/5
         [HttpPut("{id}")]
-        public bool Put(Guid id,Guid IDUser, Guid IDVoucher, DateTime CreateDate, int Status, double TotalMoney, double TransportFee, string PhoneNumber, string Address)
+        public bool Put(Guid id, Guid IDUser, Guid IDVoucher, DateTime CreateDate, int Status, double TotalMoney, double TransportFee, string PhoneNumber, string Address)
         {
             Bill Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
             Item.IDUser = IDUser;
