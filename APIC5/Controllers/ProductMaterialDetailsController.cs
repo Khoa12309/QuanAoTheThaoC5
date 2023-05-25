@@ -46,12 +46,12 @@ namespace APIC5.Controllers
 
         // PUT api/<ProductMaterialDetailsController>/5
         [HttpPut("{id}")]
-        public bool Post(Guid id ,Guid IDProductMaterial, Guid IDProduct, string Description)
+        public bool Post(Guid id, Guid IDProductMaterial, Guid IDProduct, string Description)
         {
-            ProductMaterialDetails Item =_allrepo.GetAllItems().FirstOrDefault(c=>c.Id==id);
-            
+            ProductMaterialDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
+
             Item.Description = Description;
-          
+
             return _allrepo.UpdateItem(Item);
         }
 

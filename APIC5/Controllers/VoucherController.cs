@@ -8,7 +8,7 @@ using QuanAoTheThaoC5.Repositories;
 
 namespace APIC5.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class VoucherController : ControllerBase
@@ -35,8 +35,8 @@ namespace APIC5.Controllers
 
         // POST api/<Voucher>
         [HttpPost("create-item")]
-        
-   
+
+
         public bool Create(string Name, string VoucherCode, string Description, int Status, DateTime CreateDate, DateTime StartDate, DateTime EndDate, int DiscountValue)
         {
             Voucher voucher = new Voucher();
@@ -52,12 +52,12 @@ namespace APIC5.Controllers
             return _allrepo.CreateItem(voucher);
         }
 
-    // PUT api/<Voucher>/5
-    [HttpPut("{id}")]
-        public bool Put(Guid id,string Name, string VoucherCode, string Description, int Status, DateTime CreateDate, DateTime StartDate, DateTime EndDate, int DiscountValue)
+        // PUT api/<Voucher>/5
+        [HttpPut("{id}")]
+        public bool Put(Guid id, string Name, string VoucherCode, string Description, int Status, DateTime CreateDate, DateTime StartDate, DateTime EndDate, int DiscountValue)
         {
             Voucher voucher = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
-            
+
 
             voucher.VoucherCode = VoucherCode;
             voucher.Name = Name;
@@ -74,7 +74,7 @@ namespace APIC5.Controllers
         [HttpDelete("{id}")]
         public bool Delete(Guid id)
         {
-            Voucher voucher=_allrepo.GetAllItems().FirstOrDefault(c=>c.Id==id);
+            Voucher voucher = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
             return _allrepo.DeleteItem(voucher);
         }
     }
