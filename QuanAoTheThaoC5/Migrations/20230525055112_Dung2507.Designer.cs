@@ -12,8 +12,8 @@ using QuanAoTheThaoC5.ContextDataBase;
 namespace QuanAoTheThaoC5.Migrations
 {
     [DbContext(typeof(ShoppingDbContext))]
-    [Migration("20230523140927_HuyAddDb230523")]
-    partial class HuyAddDb230523
+    [Migration("20230525055112_Dung2507")]
+    partial class Dung2507
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

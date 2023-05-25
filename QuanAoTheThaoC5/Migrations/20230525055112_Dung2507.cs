@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuanAoTheThaoC5.Migrations
 {
-    public partial class c5 : Migration
+    public partial class Dung2507 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
