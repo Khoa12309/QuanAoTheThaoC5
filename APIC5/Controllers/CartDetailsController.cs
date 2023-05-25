@@ -33,7 +33,7 @@ namespace APIC5.Controllers
 
         // POST api/<ColorController>
         [HttpPost]
-        public bool Create(int id ,Guid Product_ID, Guid Cart_ID, int Status, int Quantity)
+        public bool Create(Guid id ,Guid Product_ID, Guid Cart_ID, int Status, int Quantity)
         {
             CartDetails Item = new CartDetails();
             Item.Id = id;
@@ -45,7 +45,7 @@ namespace APIC5.Controllers
 
         // PUT api/<ColorController>/5
         [HttpPut("{id}")]
-        public bool Put(int id, Guid Product_ID, Guid Cart_ID, int Status, int Quantity)
+        public bool Put(Guid id, Guid Product_ID, Guid Cart_ID, int Status, int Quantity)
         {
             CartDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
             Item.Product_ID = Product_ID;
@@ -56,7 +56,7 @@ namespace APIC5.Controllers
 
         // DELETE api/<ColorController>/5
         [HttpDelete("{id}")]
-        public bool Delete(int id)
+        public bool Delete(Guid id)
         {
             CartDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
             return _allrepo.DeleteItem(Item);

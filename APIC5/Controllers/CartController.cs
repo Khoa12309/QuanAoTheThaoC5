@@ -15,7 +15,7 @@ namespace APIC5.Controllers
         ShoppingDbContext _context = new ShoppingDbContext();
         public CartController()
         {
-            _allrepo = new AllRepositroies<ProductImg>(_context, _context.Carts);
+            _allrepo = new AllRepositroies<Cart>(_context, _context.Carts);
         }
         // GET: api/<ColorController>
         [HttpGet]
