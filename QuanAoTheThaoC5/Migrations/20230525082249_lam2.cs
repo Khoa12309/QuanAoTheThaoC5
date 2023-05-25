@@ -4,7 +4,7 @@
 
 namespace QuanAoTheThaoC5.Migrations
 {
-    public partial class HuyAddDb230523 : Migration
+    public partial class lam2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

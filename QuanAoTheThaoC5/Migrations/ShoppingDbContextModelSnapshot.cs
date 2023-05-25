@@ -112,11 +112,9 @@ namespace QuanAoTheThaoC5.Migrations
 
             modelBuilder.Entity("QuanAoTheThaoC5.Models.CartDetails", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Cart_ID")
                         .HasColumnType("uniqueidentifier");

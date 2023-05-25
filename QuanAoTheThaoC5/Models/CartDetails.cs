@@ -3,7 +3,7 @@
 
     public class CartDetails
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid Product_ID { get; set; }
         public Guid Cart_ID { get; set; }
         public int Quantity { get; set; }
