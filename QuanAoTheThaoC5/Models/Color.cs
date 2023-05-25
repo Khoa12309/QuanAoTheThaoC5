@@ -1,9 +1,10 @@
 ﻿namespace QuanAoTheThaoC5.Models
 {
-
-    public class ProductMaterial
+    public class Color
     {
         public Guid Id { get; set; }
+        public string ColerCode { get; set; }
         public string Name { get; set; }
+      
     }
 }

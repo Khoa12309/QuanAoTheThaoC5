@@ -9,8 +9,8 @@ namespace QuanAoTheThaoC5.Configurations
         public void Configure(EntityTypeBuilder<BillDetails> builder)
         {
             builder.HasKey(c => c.ID);
-           
-
+            builder.HasOne(c => c.Bill).WithMany().HasForeignKey(c => c.IDBill);
+            builder.HasOne(c => c.Product).WithMany().HasForeignKey(c => c.IDProduct);
         }
     }
 }
