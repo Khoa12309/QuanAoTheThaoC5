@@ -12,8 +12,8 @@ using QuanAoTheThaoC5.ContextDataBase;
 namespace QuanAoTheThaoC5.Migrations
 {
     [DbContext(typeof(ShoppingDbContext))]
-    [Migration("20230525055112_Dung2507")]
-    partial class Dung2507
+    [Migration("20230527003311_Dung_20833")]
+    partial class Dung_20833
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -114,11 +114,9 @@ namespace QuanAoTheThaoC5.Migrations
 
             modelBuilder.Entity("QuanAoTheThaoC5.Models.CartDetails", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Cart_ID")
                         .HasColumnType("uniqueidentifier");

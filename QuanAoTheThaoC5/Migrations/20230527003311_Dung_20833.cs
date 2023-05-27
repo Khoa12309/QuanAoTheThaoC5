@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuanAoTheThaoC5.Migrations
 {
-    public partial class Dung2507 : Migration
+    public partial class Dung_20833 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -318,8 +318,7 @@ namespace QuanAoTheThaoC5.Migrations
                 name: "CartDetails",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Product_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Cart_ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false)
