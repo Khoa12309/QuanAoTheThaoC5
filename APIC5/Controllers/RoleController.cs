@@ -26,18 +26,17 @@ namespace APIC5.Controllers
 
         // GET api/<ColorController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Role Get(Guid id)
         {
-            return "value";
+            return _allrepo.GetAllItems().FirstOrDefault(c=>c.Id==id);
         }
 
         // POST api/<ColorController>
-        [HttpPost]
+        [HttpPost("CreateRole")]
         public bool Create( string Name)
         {
             Role Item = new Role();
-            Item.Id = Guid.NewGuid();
-            
+            Item.Id = Guid.NewGuid();            
             Item.Name = Name;
             return _allrepo.CreateItem(Item);
         }
@@ -46,8 +45,7 @@ namespace APIC5.Controllers
         [HttpPut("{id}")]
         public bool Put(Guid id, string Name)
         {
-            Role Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
-         
+            Role Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);         
             Item.Name = Name;
             return _allrepo.UpdateItem(Item);
         }
