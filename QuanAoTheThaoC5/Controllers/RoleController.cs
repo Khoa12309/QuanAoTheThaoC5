@@ -46,9 +46,18 @@ namespace QuanAoTheThaoC5.Controllers
 			return RedirectToAction("RoleView");
         }
 		[HttpGet]
-        public IActionResult UpdateRole()
+        public async Task<IActionResult> UpdateRole(Guid id)
         {
-            return View();
+            string requestURL =
+            $"https://localhost:7001/api/Role";
+            var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+            var response = await httpClient.GetAsync(requestURL); // Lấy kết quả
+                                                                  // Đọc ra string Json
+            string apiData = await response.Content.ReadAsStringAsync();
+            // Lấy kết quả thu được bằng cách bóc dữ liệu Json
+            List<Role> result = JsonConvert.DeserializeObject<List<Role>>(apiData);
+           
+            return View(result.Find(c => c.Id == id));
         }
         [HttpPost]
         public async Task<IActionResult> UpdateRole(Role obj)
@@ -72,7 +81,7 @@ namespace QuanAoTheThaoC5.Controllers
             string requestURL =
             $"https://localhost:7001/api/Role";
             var httpClient = new HttpClient(); // Tại 1 httpClient để call API
-            var response = await httpClient.DeleteAsync(requestURL + "/DeleteRole/"+id); 
+            var response = await httpClient.DeleteAsync(requestURL + "/DeleteRole?id="+id.ToString()); 
 
             string apiData = await response.Content.ReadAsStringAsync();
             // Lấy kết quả thu được bằng cách bóc dữ liệu Json
