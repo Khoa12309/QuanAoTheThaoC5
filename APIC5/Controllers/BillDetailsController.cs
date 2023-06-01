@@ -39,7 +39,9 @@ namespace APIC5.Controllers
         public bool Create(Guid IDBill, Guid IDProduct, int Amount)
         {
             Product product =_prod.GetAllItems().FirstOrDefault(c=>c.Id==IDProduct);
-            if (product.Quantity<Amount)
+            BillDetails billDetails = _allrepo.GetAllItems().FirstOrDefault(c => c.IDProduct == product.Id && c.IDBill == IDBill);
+
+            if (product.Quantity<Amount+billDetails.Amount)
             {
                 return false;
             }
@@ -52,24 +54,28 @@ namespace APIC5.Controllers
             product.Quantity-=Amount;
             if (_allrepo.GetAllItems().Any(c=>c.IDProduct==product.Id&&c.IDBill==IDBill))
             {
-                BillDetails billDetails = _allrepo.GetAllItems().FirstOrDefault(c => c.IDProduct == product.Id && c.IDBill == IDBill);
-                billDetails.Amount+=Amount;
-                
+               
+                billDetails.Amount+=Amount;                
                 _prod.UpdateItem(product);
                 return _allrepo.UpdateItem(billDetails);
             }
             _prod.UpdateItem(product);
-
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public bool Put(Guid id, Guid IDBill, Guid IDProduct, double Price, int Amount)
+        public bool Put(Guid id,int Amount)
         {
             BillDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.ID == id);
+            Product product = _prod.GetAllItems().FirstOrDefault(c => c.Id == Item.IDProduct);
+            if (product.Quantity < Amount)
+            {
+                return false;
+            }
             Item.Amount = Amount;
-            Item.Price = Price;
+            product.Quantity -= Amount;
+            _prod.UpdateItem(product);
             return _allrepo.UpdateItem(Item);
         }
 

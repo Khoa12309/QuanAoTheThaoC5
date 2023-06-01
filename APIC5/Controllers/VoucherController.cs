@@ -15,6 +15,7 @@ namespace APIC5.Controllers
     {
         private readonly IAllRepositories<Voucher> _allrepo;
         ShoppingDbContext _context = new ShoppingDbContext();
+
         public VoucherController()
         {
             _allrepo = new AllRepositroies<Voucher>(_context, _context.Vouchers);
@@ -35,9 +36,7 @@ namespace APIC5.Controllers
 
         // POST api/<Voucher>
         [HttpPost("create-item")]
-
-
-        public bool Create(string Name, string VoucherCode, string Description, int Status, DateTime CreateDate, DateTime StartDate, DateTime EndDate, int DiscountValue)
+        public bool CreateVoucher(string Name, string VoucherCode, string Description, int Status, DateTime CreateDate, DateTime StartDate, DateTime EndDate, int DiscountValue)
         {
             Voucher voucher = new Voucher();
             voucher.Id = Guid.NewGuid();

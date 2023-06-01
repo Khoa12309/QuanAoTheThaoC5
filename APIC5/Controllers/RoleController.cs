@@ -5,6 +5,7 @@ using QuanAoTheThaoC5.IRepositories;
 using QuanAoTheThaoC5.Models;
 using QuanAoTheThaoC5.Repositories;
 
+
 namespace APIC5.Controllers
 {
     [Route("api/[controller]")]
@@ -13,6 +14,8 @@ namespace APIC5.Controllers
     {
         private readonly IAllRepositories<Role> _allrepo;
         ShoppingDbContext _context = new ShoppingDbContext();
+       
+
         public RoleController()
         {
             _allrepo = new AllRepositroies<Role>(_context, _context.Roles);
@@ -33,25 +36,25 @@ namespace APIC5.Controllers
 
         // POST api/<ColorController>
         [HttpPost("CreateRole")]
-        public bool Create( string Name)
+        public bool Create( Role obj)
         {
             Role Item = new Role();
             Item.Id = Guid.NewGuid();            
-            Item.Name = Name;
+            Item.Name = obj.Name;
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<ColorController>/5
-        [HttpPut("{id}")]
-        public bool Put(Guid id, string Name)
+        [HttpPut("UpdateRole")]
+        public bool UpdateRole(Role obj)
         {
-            Role Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);         
-            Item.Name = Name;
+            Role Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == obj.Id);         
+            Item.Name = obj.Name;
             return _allrepo.UpdateItem(Item);
         }
 
         // DELETE api/<ColorController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteRole")]
         public bool Delete(Guid id)
         {
             Role Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
