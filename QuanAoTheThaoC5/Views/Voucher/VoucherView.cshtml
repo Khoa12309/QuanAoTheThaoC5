@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "VoucherView";
+
 }
 
 <h1>VoucherView</h1>
@@ -12,7 +13,11 @@
 <table class="table">
     <thead>
         <tr>
-          
+            <th>
+               @{
+                   <p>@ViewBag.Voucher</p>
+               }
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -70,8 +75,11 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+
                 @Html.ActionLink("Details", "Details", new { id=item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            
+
             </td>
         </tr>
 }

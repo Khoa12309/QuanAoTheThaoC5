@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json;
 using QuanAoTheThaoC5.Models;
 using System.Text;
@@ -8,6 +9,7 @@ namespace QuanAoTheThaoC5.Controllers
 {
     public class VoucherController : Controller
     {
+     
         // GET: VoucherController
         public ActionResult Index()
         {
@@ -38,37 +40,56 @@ namespace QuanAoTheThaoC5.Controllers
         // POST: VoucherController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateVoucher(string Name, string VoucherCode, string Description, int Status, DateTime CreateDate, DateTime StartDate, DateTime EndDate, int DiscountValue)
+        public async Task<IActionResult> CreateVoucher(Voucher obj)
         {
-        
+            string data = JsonConvert.SerializeObject(obj);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
             string requestURL =
-            $"https://localhost:7001/api/Voucher/" + $"create-item?Name={Name}&VoucherCode={VoucherCode}&Description={Description}&Status={Status}&CreateDate={CreateDate}&StartDate={StartDate}&EndDate={EndDate}&DiscountValue={DiscountValue}";
-            
+            $"https://localhost:7001/api/Voucher";
             var httpClient = new HttpClient(); // Tại 1 httpClient để call API
-            var content = new StringContent(requestURL);
-          //  var response = await httpClient.PostAsync(); // Lấy kết quả
-                                                                  // Đọc ra string Json
-           
-            // Lấy kết quả thu được bằng cách bóc dữ liệu Json
-
+            var response = await httpClient.PostAsync(requestURL + "/create-item", content); 
             return RedirectToAction("VoucherView");
 
         }
 
         // GET: VoucherController/Edit/5
-        public ActionResult UpdateVocher(int id)
+
+        [HttpGet]
+        public async Task<ActionResult> Edit(Guid id)
+
         {
-            return View();
+
+            string requestURL =
+             $"https://localhost:7001/api/Voucher";
+            var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+            var response = await httpClient.GetAsync(requestURL); // Lấy kết quả
+                                                                  // Đọc ra string Json
+            string apiData = await response.Content.ReadAsStringAsync();
+            // Lấy kết quả thu được bằng cách bóc dữ liệu Json
+            var result = JsonConvert.DeserializeObject<List<Voucher>>(apiData);
+
+
+            return View(result.Find(c=>c.Id==id));
         }
 
         // POST: VoucherController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateVocher(int id, IFormCollection collection)
+
+        public async Task<ActionResult> Edit(Voucher obj)
+
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                string data = JsonConvert.SerializeObject(obj);
+                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+                string requestURL =
+                $"https://localhost:7001/api/Voucher";
+                var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+                var response = await httpClient.PutAsync(requestURL + "/put-item", content);
+                string apiData = await response.Content.ReadAsStringAsync();
+                return RedirectToAction("VoucherView");
             }
             catch
             {
@@ -77,24 +98,16 @@ namespace QuanAoTheThaoC5.Controllers
         }
 
         // GET: VoucherController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return View();
-        }
 
-        // POST: VoucherController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            string requestURL =
+            $"https://localhost:7001/api/Voucher";
+            var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+            var response = await httpClient.DeleteAsync(requestURL + "/delete-item?id=" + id.ToString());
+            string apiData = await response.Content.ReadAsStringAsync();
+           
+            return RedirectToAction("VoucherView");
         }
     }
 }
