@@ -53,8 +53,10 @@ namespace QuanAoTheThaoC5.Controllers
         }
 
         // GET: VoucherController/Edit/5
+
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
+
         {
 
             string requestURL =
@@ -73,7 +75,9 @@ namespace QuanAoTheThaoC5.Controllers
         // POST: VoucherController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<ActionResult> Edit(Voucher obj)
+
         {
             try
             {
