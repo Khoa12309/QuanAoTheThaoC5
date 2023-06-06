@@ -56,7 +56,7 @@ namespace QuanAoTheThaoC5.Controllers
         }
 
         // GET: VoucherController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult UpdateVocher(int id)
         {
             return View();
         }
@@ -64,7 +64,7 @@ namespace QuanAoTheThaoC5.Controllers
         // POST: VoucherController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult UpdateVocher(int id, IFormCollection collection)
         {
             try
             {
