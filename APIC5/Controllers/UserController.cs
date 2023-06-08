@@ -26,46 +26,43 @@ namespace APIC5.Controllers
         }
 
         // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+    
 
         // POST api/<UserController>
-        [HttpPost]
-        public bool Create(Guid IDRole, string Name, string Email, string Address, string Password, string PhoneNumber, int Status)
+        [HttpPost("createUser")]
+        public bool CreateUser(User obj)
         {
             
-        User Item = new User();
+            User Item = new User();
             Item.Id = Guid.NewGuid();
-            Item.Name = Name;
-            Item.Email = Email;
-            Item.Address = Address;
-            Item.Password = Password;
-            Item.PhoneNumber = PhoneNumber;
-            Item.Status = Status;
+            Item.Name = obj.Name;
+            Item.Email = obj.Email;
+            Item.Address = obj.Address;
+            Item.Password = obj.Password;
+            Item.PhoneNumber = obj.PhoneNumber;
+            Item.Status = obj.Status;
+            Item.IDRole = obj.IDRole;
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public bool Update(Guid id,Guid IDRole, string Name, string Email, string Address, string Password, string PhoneNumber, int Status)
+        [HttpPut("UpdateUser")]
+        public bool Update(User obj)
         {
 
-            User Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
-            
-            Item.Name = Name;
-            Item.Email = Email;
-            Item.Address = Address;
-            Item.Password = Password;
-            Item.PhoneNumber = PhoneNumber;
-            Item.Status = Status;
+            User Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == obj.Id);           
+            Item.Name = obj.Name;
+            Item.Email = obj.Email;
+            Item.Address = obj.Address;
+            Item.Password = obj.Password;
+            Item.PhoneNumber = obj.PhoneNumber;
+            Item.Status = obj.Status;
+            Item.IDRole = obj.IDRole;
             return _allrepo.UpdateItem(Item);
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("deleteUser")]
         public bool Delete(Guid id)
         {
             User Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);

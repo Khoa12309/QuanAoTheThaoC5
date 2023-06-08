@@ -1,82 +1,87 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QuanAoTheThaoC5.Models;
 using System.Text;
 
 namespace QuanAoTheThaoC5.Controllers
 {
-    public class VoucherController : Controller
+    public class UserController : Controller
     {
-     
-        // GET: VoucherController
+        // GET: UserController
         public ActionResult Index()
         {
-            return View();
-        }
 
-        // GET: VoucherController/Details/5
-        public async Task<IActionResult> VoucherView()
+          return View();
+        }
+        public List<Role> roles()
+        {
+
+            string requestURL =
+            $"https://localhost:7001/api/Role";
+            var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+            var response = httpClient.GetAsync(requestURL).Result; // Lấy kết quả                                                                 // Đọc ra string Json
+            string apiData = response.Content.ReadAsStringAsync().Result;
+            // Lấy kết quả thu được bằng cách bóc dữ liệu Json
+            var result = JsonConvert.DeserializeObject<List<Role>>(apiData);
+            return result;
+        }
+        public async Task<IActionResult> UserView()
         {
             string requestURL =
-            $"https://localhost:7001/api/Voucher";
+            $"https://localhost:7001/api/User";
             var httpClient = new HttpClient(); // Tại 1 httpClient để call API
             var response = await httpClient.GetAsync(requestURL); // Lấy kết quả
                                                                   // Đọc ra string Json
             string apiData = await response.Content.ReadAsStringAsync();
             // Lấy kết quả thu được bằng cách bóc dữ liệu Json
-            var result = JsonConvert.DeserializeObject<List<Voucher>>(apiData);
+            var result = JsonConvert.DeserializeObject<List<User>>(apiData);
             return View(result);
         }
 
-        // GET: VoucherController/Create
+
         [HttpGet]
-        public ActionResult CreateVoucher()
+        public ActionResult CreateUser()
         {
+            ViewBag.role = roles();
             return View();
         }
 
-        // POST: VoucherController/Create
+        // POST: UserController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateVoucher(Voucher obj)
+       // [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateUser(User obj)
         {
+            ViewBag.role = roles();
+            obj.Id = Guid.NewGuid();    
             string data = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-            string requestURL =
-            $"https://localhost:7001/api/Voucher";
             var httpClient = new HttpClient(); // Tại 1 httpClient để call API
-            var response = await httpClient.PostAsync(requestURL + "/create-item", content); 
-            return RedirectToAction("VoucherView");
+            var response = await httpClient.PostAsync("https://localhost:7001/api/User/createUser", content);
+            return RedirectToAction("UserView");
         }
-
-        // GET: VoucherController/Edit/5
 
         [HttpGet]
         public async Task<ActionResult> Edit(Guid id)
-
         {
 
             string requestURL =
-             $"https://localhost:7001/api/Voucher";
+             $"https://localhost:7001/api/User";
             var httpClient = new HttpClient(); // Tại 1 httpClient để call API
             var response = await httpClient.GetAsync(requestURL); // Lấy kết quả
                                                                   // Đọc ra string Json
             string apiData = await response.Content.ReadAsStringAsync();
             // Lấy kết quả thu được bằng cách bóc dữ liệu Json
-            var result = JsonConvert.DeserializeObject<List<Voucher>>(apiData);
+            var result = JsonConvert.DeserializeObject<List<User>>(apiData);
 
+            ViewBag.role = roles();
 
-            return View(result.Find(c=>c.Id==id));
+            return View(result.Find(c => c.Id == id));
         }
 
-        // POST: VoucherController/Edit/5
+        // POST: UserController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public async Task<ActionResult> Edit(Voucher obj)
-
+        public async Task<IActionResult> Edit(User obj)
         {
             try
             {
@@ -84,11 +89,13 @@ namespace QuanAoTheThaoC5.Controllers
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
 
                 string requestURL =
-                $"https://localhost:7001/api/Voucher";
+                $"https://localhost:7001/api/User";
                 var httpClient = new HttpClient(); // Tại 1 httpClient để call API
-                var response = await httpClient.PutAsync(requestURL + "/put-item", content);
+                var response = await httpClient.PutAsync("https://localhost:7001/api/User/UpdateUser", content);
                 string apiData = await response.Content.ReadAsStringAsync();
-                return RedirectToAction("VoucherView");
+                ViewBag.role = roles();
+
+                return RedirectToAction("UserView");
             }
             catch
             {
@@ -96,17 +103,16 @@ namespace QuanAoTheThaoC5.Controllers
             }
         }
 
-        // GET: VoucherController/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
 
             string requestURL =
-            $"https://localhost:7001/api/Voucher";
+            $"https://localhost:7001/api/User";
             var httpClient = new HttpClient(); // Tại 1 httpClient để call API
-            var response = await httpClient.DeleteAsync(requestURL + "/delete-item?id=" + id.ToString());
+            var response = await httpClient.DeleteAsync(requestURL + "/deleteUser?id=" + id.ToString());
             string apiData = await response.Content.ReadAsStringAsync();
-           
-            return RedirectToAction("VoucherView");
+
+            return RedirectToAction("UserView");
         }
     }
 }

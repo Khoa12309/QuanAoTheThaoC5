@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QuanAoTheThaoC5.Models;
-using System.Diagnostics;
 using System.Text;
 
 namespace QuanAoTheThaoC5.Controllers
@@ -41,8 +40,7 @@ namespace QuanAoTheThaoC5.Controllers
 			var httpClient = new HttpClient(); // Tại 1 httpClient để call API
 			var response = await httpClient.PostAsync(requestURL+ "/CreateRole", content); // Lấy kết quả// ]Đọc ra string Json
 			string apiData = await response.Content.ReadAsStringAsync();
-			// Lấy kết quả thu được bằng cách bóc dữ liệu Json
-
+			
 			return RedirectToAction("RoleView");
         }
 		[HttpGet]
@@ -70,8 +68,7 @@ namespace QuanAoTheThaoC5.Controllers
             var httpClient = new HttpClient(); // Tại 1 httpClient để call API
             var response = await httpClient.PutAsync(requestURL + "/UpdateRole", content); 
 
-            string apiData = await response.Content.ReadAsStringAsync();
-            // Lấy kết quả thu được bằng cách bóc dữ liệu Json
+            string apiData = await response.Content.ReadAsStringAsync();            
             return RedirectToAction("RoleView");
         }
       

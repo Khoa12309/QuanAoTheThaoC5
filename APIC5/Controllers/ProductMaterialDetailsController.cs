@@ -27,36 +27,37 @@ namespace APIC5.Controllers
 
         // GET api/<ProductMaterialDetailsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ProductMaterialDetails Get(Guid id)
         {
-            return "value";
+            return _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
         }
-
         // POST api/<ProductMaterialDetailsController>
-        [HttpPost]
-        public bool Create(Guid IDProductMaterial, Guid IDProduct, string Description)
+        [HttpPost("CreateProductMaterialDetails")]
+        public bool Create(ProductMaterialDetails item)
         {
             ProductMaterialDetails Item = new ProductMaterialDetails();
             Item.Id = Guid.NewGuid();
-            Item.Description = Description;
-            Item.IDProduct = IDProduct;
-            Item.IDProductMaterial = IDProductMaterial;
+            Item.Description = item.Description;
+            Item.IDProduct = item.IDProduct;
+            Item.IDProductMaterial = item.IDProductMaterial;
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<ProductMaterialDetailsController>/5
-        [HttpPut("{id}")]
-        public bool Post(Guid id, Guid IDProductMaterial, Guid IDProduct, string Description)
+        [HttpPut("UpdateProductMaterialDetails")]
+        public bool Post(ProductMaterialDetails item)
         {
-            ProductMaterialDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
+            ProductMaterialDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == item.Id);
 
-            Item.Description = Description;
+            Item.Description = item.Description;
+            Item.IDProduct = item.IDProduct;
+            Item.IDProductMaterial = item.IDProductMaterial;
 
             return _allrepo.UpdateItem(Item);
         }
 
         // DELETE api/<ProductMaterialDetailsController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteProductMaterialDetails")]
         public bool Delete(Guid id)
         {
             ProductMaterialDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
