@@ -11,6 +11,6 @@
         public string PhoneNumber { get; set; }
         public int Status { get; set; }
 
-        public virtual Role Roles { get; set; }
+        public virtual Role? Roles { get; set; }
     }
 }
