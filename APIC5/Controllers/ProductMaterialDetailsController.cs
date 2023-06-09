@@ -35,8 +35,9 @@ namespace APIC5.Controllers
         [HttpPost("CreateProductMaterialDetails")]
         public bool Create(ProductMaterialDetails item)
         {
+           
             ProductMaterialDetails Item = new ProductMaterialDetails();
-            Item.Id = Guid.NewGuid();
+            item.Id = item.Id;
             Item.Description = item.Description;
             Item.IDProduct = item.IDProduct;
             Item.IDProductMaterial = item.IDProductMaterial;

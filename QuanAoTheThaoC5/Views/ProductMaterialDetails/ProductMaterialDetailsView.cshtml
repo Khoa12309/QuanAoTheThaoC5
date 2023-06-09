@@ -1,0 +1,53 @@
+﻿@model IEnumerable<QuanAoTheThaoC5.Models.ProductMaterialDetails>
+
+@{
+    ViewData["Title"] = "ProductMaterialDetailsView";
+}
+
+<h1>ProductMaterialDetailsView</h1>
+
+<p>
+    <a asp-action="CreateProductMaterialDetails">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDProductMaterial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDProductMaterial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDProduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateProductMaterialDetails", new { id=item.Id  }) 
+                @Html.ActionLink("Details", "Details", new {  id=item.Id  }) 
+                @Html.ActionLink("Delete", "DeleteProductMaterialDetails", new {  id=item.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

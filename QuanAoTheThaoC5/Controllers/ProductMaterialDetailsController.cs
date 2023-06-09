@@ -31,6 +31,8 @@ namespace QuanAoTheThaoC5.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProductMaterialDetails(ProductMaterialDetails obj)
         {
+
+            obj.Id= Guid.NewGuid(); 
             string data = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
 
@@ -57,7 +59,7 @@ namespace QuanAoTheThaoC5.Controllers
             return View(result.Find(c => c.Id == id));
         }
         [HttpPost]
-        public async Task<IActionResult> UpdateProductMaterialDetails(ProductMaterial obj)
+        public async Task<IActionResult> UpdateProductMaterialDetails(ProductMaterialDetails obj)
         {
             string data = JsonConvert.SerializeObject(obj);
             StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
