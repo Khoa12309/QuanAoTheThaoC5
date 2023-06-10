@@ -84,6 +84,7 @@ namespace QuanAoTheThaoC5.Controllers
             string apiData = await response.Content.ReadAsStringAsync();
             // Lấy kết quả thu được bằng cách bóc dữ liệu Json
             return RedirectToAction("ProductMaterialDetailsView");
+            //
         }
     }
 }
