@@ -13,11 +13,12 @@ namespace APIC5.Controllers
     public class BillDetailsController : ControllerBase
     {
         private readonly IAllRepositories<BillDetails> _allrepo;
+        private readonly IAllRepositories<Product> _prod;
         ShoppingDbContext _context = new ShoppingDbContext();
         public BillDetailsController()
         {
             _allrepo = new AllRepositroies<BillDetails>(_context, _context.BillDetails);
-
+            _prod= new AllRepositroies<Product>(_context, _context.Products);
         }
         // GET: api/<ValuesController>
         [HttpGet]
@@ -35,24 +36,46 @@ namespace APIC5.Controllers
 
         // POST api/<ValuesController>
         [HttpPost]
-        public bool Create(Guid IDBill, Guid IDProduct, double Price, int Amount)
+        public bool Create(Guid IDBill, Guid IDProduct, int Amount)
         {
+            Product product =_prod.GetAllItems().FirstOrDefault(c=>c.Id==IDProduct);
+            BillDetails billDetails = _allrepo.GetAllItems().FirstOrDefault(c => c.IDProduct == product.Id && c.IDBill == IDBill);
+
+            if (product.Quantity<Amount+billDetails.Amount)
+            {
+                return false;
+            }
             BillDetails Item = new BillDetails();
             Item.ID = Guid.NewGuid();
             Item.IDBill = IDBill;
             Item.IDProduct = IDProduct;
-            Item.Price = Price;
+            Item.Price = product.Price;          
             Item.Amount = Amount;
+            product.Quantity-=Amount;
+            if (_allrepo.GetAllItems().Any(c=>c.IDProduct==product.Id&&c.IDBill==IDBill))
+            {
+               
+                billDetails.Amount+=Amount;                
+                _prod.UpdateItem(product);
+                return _allrepo.UpdateItem(billDetails);
+            }
+            _prod.UpdateItem(product);
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public bool Put(Guid id, Guid IDBill, Guid IDProduct, double Price, int Amount)
+        public bool Put(Guid id,int Amount)
         {
             BillDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.ID == id);
+            Product product = _prod.GetAllItems().FirstOrDefault(c => c.Id == Item.IDProduct);
+            if (product.Quantity < Amount)
+            {
+                return false;
+            }
             Item.Amount = Amount;
-            Item.Price = Price;
+            product.Quantity -= Amount;
+            _prod.UpdateItem(product);
             return _allrepo.UpdateItem(Item);
         }
 

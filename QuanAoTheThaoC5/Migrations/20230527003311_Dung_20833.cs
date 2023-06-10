@@ -5,11 +5,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuanAoTheThaoC5.Migrations
 {
+<<<<<<<< HEAD:QuanAoTheThaoC5/Migrations/20230527003311_Dung_20833.cs
 <<<<<<<< Updated upstream:QuanAoTheThaoC5/Migrations/20230527003311_Dung_20833.cs
     public partial class Dung_20833 : Migration
 ========
     public partial class one : Migration
 >>>>>>>> Stashed changes:QuanAoTheThaoC5/Migrations/20230609150252_one.cs
+========
+    public partial class migarrrtion : Migration
+>>>>>>>> master:QuanAoTheThaoC5/Migrations/20230605124301_migarrrtion.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

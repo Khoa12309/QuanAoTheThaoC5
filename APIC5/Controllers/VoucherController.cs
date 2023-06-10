@@ -15,6 +15,7 @@ namespace APIC5.Controllers
     {
         private readonly IAllRepositories<Voucher> _allrepo;
         ShoppingDbContext _context = new ShoppingDbContext();
+
         public VoucherController()
         {
             _allrepo = new AllRepositroies<Voucher>(_context, _context.Vouchers);
@@ -27,51 +28,45 @@ namespace APIC5.Controllers
         }
 
         // GET api/<Voucher>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+       
 
         // POST api/<Voucher>
         [HttpPost("create-item")]
-
-
-        public bool Create(string Name, string VoucherCode, string Description, int Status, DateTime CreateDate, DateTime StartDate, DateTime EndDate, int DiscountValue)
+        public bool CreateVoucher(Voucher obj)
         {
             Voucher voucher = new Voucher();
             voucher.Id = Guid.NewGuid();
-            voucher.VoucherCode = VoucherCode;
-            voucher.Name = Name;
-            voucher.Description = Description;
-            voucher.Status = Status;
-            voucher.CreateDate = CreateDate;
-            voucher.StartDate = StartDate;
-            voucher.EndDate = EndDate;
-            voucher.DiscountValue = DiscountValue;
+            voucher.VoucherCode = obj.VoucherCode;
+            voucher.Name = obj.Name;
+            voucher.Description = obj.Description;
+            voucher.Status = obj.Status;
+            voucher.CreateDate = obj.CreateDate;
+            voucher.StartDate = obj.StartDate;
+            voucher.EndDate = obj.EndDate;
+            voucher.DiscountValue = obj.DiscountValue;
             return _allrepo.CreateItem(voucher);
         }
 
         // PUT api/<Voucher>/5
-        [HttpPut("{id}")]
-        public bool Put(Guid id, string Name, string VoucherCode, string Description, int Status, DateTime CreateDate, DateTime StartDate, DateTime EndDate, int DiscountValue)
+        [HttpPut("put-item")]
+        public bool Put(Voucher obj)
         {
-            Voucher voucher = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
+            Voucher voucher = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == obj.Id);
 
 
-            voucher.VoucherCode = VoucherCode;
-            voucher.Name = Name;
-            voucher.Description = Description;
-            voucher.Status = Status;
-            voucher.CreateDate = CreateDate;
-            voucher.StartDate = StartDate;
-            voucher.EndDate = EndDate;
-            voucher.DiscountValue = DiscountValue;
+            voucher.VoucherCode = obj.VoucherCode;
+            voucher.Name = obj.Name;
+            voucher.Description = obj.Description;
+            voucher.Status = obj.Status;
+            voucher.CreateDate = obj.CreateDate;
+            voucher.StartDate = obj.StartDate;
+            voucher.EndDate = obj.EndDate;
+            voucher.DiscountValue = obj.DiscountValue;
             return _allrepo.UpdateItem(voucher);
         }
 
         // DELETE api/<Voucher>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete-item")]
         public bool Delete(Guid id)
         {
             Voucher voucher = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
