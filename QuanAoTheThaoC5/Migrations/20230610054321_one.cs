@@ -5,18 +5,57 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QuanAoTheThaoC5.Migrations
 {
-<<<<<<<< HEAD:QuanAoTheThaoC5/Migrations/20230527003311_Dung_20833.cs
-<<<<<<<< Updated upstream:QuanAoTheThaoC5/Migrations/20230527003311_Dung_20833.cs
-    public partial class Dung_20833 : Migration
-========
     public partial class one : Migration
->>>>>>>> Stashed changes:QuanAoTheThaoC5/Migrations/20230609150252_one.cs
-========
-    public partial class migarrrtion : Migration
->>>>>>>> master:QuanAoTheThaoC5/Migrations/20230605124301_migarrrtion.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+              name: "BillDetails");
+
+            migrationBuilder.DropTable(
+                name: "CartDetails");
+
+            migrationBuilder.DropTable(
+                name: "ColorDetails");
+
+            migrationBuilder.DropTable(
+                name: "ProductImgs");
+
+            migrationBuilder.DropTable(
+                name: "ProductMaterialDetails");
+
+            migrationBuilder.DropTable(
+                name: "Bills");
+
+            migrationBuilder.DropTable(
+                name: "Carts");
+
+            migrationBuilder.DropTable(
+                name: "Colors");
+
+            migrationBuilder.DropTable(
+                name: "ProductMaterials");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Vouchers");
+
+            migrationBuilder.DropTable(
+                name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Sizes");
+
+            migrationBuilder.DropTable(
+                name: "Suppliers");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new

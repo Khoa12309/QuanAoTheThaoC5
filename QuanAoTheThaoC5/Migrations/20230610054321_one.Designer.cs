@@ -12,13 +12,8 @@ using QuanAoTheThaoC5.ContextDataBase;
 namespace QuanAoTheThaoC5.Migrations
 {
     [DbContext(typeof(ShoppingDbContext))]
-<<<<<<<< Updated upstream:QuanAoTheThaoC5/Migrations/20230527003311_Dung_20833.Designer.cs
-    [Migration("20230527003311_Dung_20833")]
-    partial class Dung_20833
-========
-    [Migration("20230609150252_one")]
+    [Migration("20230610054321_one")]
     partial class one
->>>>>>>> Stashed changes:QuanAoTheThaoC5/Migrations/20230609150252_one.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

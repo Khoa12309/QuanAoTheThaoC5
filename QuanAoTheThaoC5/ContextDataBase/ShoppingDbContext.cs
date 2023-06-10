@@ -10,11 +10,7 @@ namespace QuanAoTheThaoC5.ContextDataBase
         public ShoppingDbContext(DbContextOptions<ShoppingDbContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-<<<<<<< Updated upstream
             optionsBuilder.UseSqlServer(@"Data Source=DUNGNGUYEN\SQLEXPRESS;Initial Catalog=QuanAoc5_Nhom3;Integrated Security=True");
-=======
-            optionsBuilder.UseSqlServer(@"Data Source=DUNGNGUYEN\SQLEXPRESS;Initial Catalog=QlBanQuanAoTheThaoNam;Integrated Security=True");           
->>>>>>> Stashed changes
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
