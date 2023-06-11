@@ -1,0 +1,48 @@
+﻿@model IEnumerable<QuanAoTheThaoC5.Models.ProductImg>
+
+@{
+    ViewData["Title"] = "ImgView";
+}
+
+<h1>ImgView</h1>
+
+<p>
+    <a asp-action="CreateImg">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.URl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDProduct)
+            </td>
+            <td>
+                    <img src="~/themes/img/@item.URl" alt="Fjords" style="width:100%">
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "DeleteImg", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

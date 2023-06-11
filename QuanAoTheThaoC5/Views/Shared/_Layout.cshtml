@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -57,15 +58,17 @@
                         <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                     </form>
                     <ul id="topMenu" class="nav pull-right">
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="RoleView">Role</a>
-                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ProductImg" asp-action="ImgView">Role</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Voucher" asp-action="VoucherView">Voucher</a>
-                        </li><li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="UserView">User</a>
                         </li>
-                        </li><li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Size" asp-action="SizeView">User</a>
                         </li>
                         <li class="nav-item">
@@ -219,9 +222,9 @@
                 <!-- Sidebar end=============================================== -->
                 <div class="span9">
 
-                    
+
                     @RenderBody()
-                    
+
 
                 </div>
             </div>
@@ -273,7 +276,7 @@
     <script src="~/themes/js/bootshop.js"></script>
     <script src="~/themes/js/jquery.lightbox-0.5.js"></script>
 
-     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
     <span id="~/themesBtn"></span>
 </body>
 </html>

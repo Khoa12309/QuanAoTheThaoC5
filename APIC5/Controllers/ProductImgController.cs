@@ -25,20 +25,16 @@ namespace APIC5.Controllers
         }
 
         // GET api/<ColorController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+       
         // POST api/<ColorController>
-        [HttpPost]
-        public bool Create(Guid IDProduct, string URL)
+        [HttpPost("CreateProductImg")]
+        public bool Create(Guid IDProduct, string URl)
+
         {
             ProductImg Item = new ProductImg();
             Item.Id = Guid.NewGuid();
             Item.IDProduct = IDProduct;
-            Item.URl = URL;
+            Item.URl = URl;
             return _allrepo.CreateItem(Item);
         }
 
@@ -53,7 +49,7 @@ namespace APIC5.Controllers
         }
 
         // DELETE api/<ColorController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteImg")]
         public bool Delete(Guid id)
         {
             ProductImg Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
