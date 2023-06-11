@@ -179,5 +179,16 @@ namespace QuanAoTheThaoC5.Controllers
             // Lấy kết quả thu được bằng cách bóc dữ liệu Json
             return RedirectToAction("ProductView");
         }
+        public async Task<IActionResult> DetailsProduct(Guid id)
+        {
+
+            var respones = await httpClient.GetAsync("https://localhost:7001/api/Product");
+            var dataapi = await respones.Content.ReadAsStringAsync();
+            List<Product> dataobj = JsonConvert.DeserializeObject<List<Product>>(dataapi);
+
+            return View(dataobj.FirstOrDefault(c=>c.Id==id));
+        }
+
+       
     }
 }

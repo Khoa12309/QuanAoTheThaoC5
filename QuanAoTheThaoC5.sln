@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuanAoTheThaoC5", "QuanAoTheThaoC5\QuanAoTheThaoC5.csproj", "{0626F6DD-0BE8-4630-BA98-9E01D88CE079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIC5", "APIC5\APIC5.csproj", "{11328F45-C7DA-4452-88E9-D82350682564}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIC5", "APIC5\APIC5.csproj", "{11328F45-C7DA-4452-88E9-D82350682564}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
