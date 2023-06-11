@@ -1,300 +1,43 @@
 ﻿@model IEnumerable<QuanAoTheThaoC5.Models.Product>
 
 @{
-    ViewData["Title"] = "Cart";
+	ViewData["Title"] = "Cart";
 	double tt = 0;
 	double tong = 0;
 }
-<link href="~/css/cart.css" rel="stylesheet" />
-<h1>Cart</h1>
-<section class="h-100" style="background-color: #eee;">
-  <div class="container h-100 py-5">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-10">
+<h4> Home Page </h4>
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-          <div>
-            <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                  class="fas fa-angle-down mt-1"></i></a></p>
-          </div>
-        </div>
 
-        <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
+ 
+        @{
+            foreach (var item in Model)
+        {
+            <ul class="thumbnails">
+            <tr>
+                <li class="span3">
+                    <div class="thumbnail">
+                        <a href="product_details.html"><img src="~/themes/images/products/6.jpg" alt="" /></a>
+                        <div class="caption">
+                            <h5 style="margin-left :10px">@item.Name</h5>
 
-                <input id="form1" min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" />
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
-
-                <input id="form1" min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" />
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
-
-                <input id="form1" min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" />
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card rounded-3 mb-4">
-          <div class="card-body p-4">
-            <div class="row d-flex justify-content-between align-items-center">
-              <div class="col-md-2 col-lg-2 col-xl-2">
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                  class="img-fluid rounded-3" alt="Cotton T-shirt">
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-3">
-                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-              </div>
-              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                  <i class="fas fa-minus"></i>
-                </button>
-
-                <input id="form1" min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" />
-
-                <button class="btn btn-link px-2"
-                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                <h5 class="mb-0">$499.00</h5>
-              </div>
-              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card mb-4">
-          <div class="card-body p-4 d-flex flex-row">
-            <div class="form-outline flex-fill">
-              <input type="text" id="form1" class="form-control form-control-lg" />
-              <label class="form-label" for="form1">Discound code</label>
-            </div>
-            <button type="button" class="btn btn-outline-warning btn-lg ms-3">Apply</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body">
-            <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-@*<div class="container" >
-	<section class="h-100 h-custom" style="background-color: #eee;">
-		<div class="container h-100 py-5">
-			<div class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col">
-					<div class="card shopping-cart" style="border-radius: 15px;">
-						<div class="card-body text-black">
-
-							<div class="row">
-								<div class="col-lg-6 px-5 py-4">
-
-									<h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Your products</h3>
-									@{
-
-										foreach (var item in Model)
-										{
-											tt = Convert.ToDouble(item.Price) * Convert.ToDouble(@item.Quantity);
-											tong += tt;
-												<div class="d-flex align-items-center mb-5">
-													<div class="flex-shrink-0">
-														<img src="~/img/@item.Name"
-												 class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
-													</div>
-													<div class="flex-grow-1 ms-3">
-													<a href="@Url.Action("DeleteCartItem","Home",new { id = item.Id})" class="float-end text-black"><i class="bi bi-trash3">xóa</i></a>
-														<h5 class="text-primary">@item.Name</h5>
-														<h6 style="color: #9e9e9e;">@item.Description</h6>
-														<div class="d-flex align-items-center">
-															<p class="fw-bold mb-0 me-5 pe-3">@item.Price</p>													 
-															<div class="def-number-input number-input safari_only">
-															<form  asp-action="tanggiam" asp-controller="Home" asp-route-id="@item.Id">
-																<button  onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-																	class="minus btn btn-default"></button>
-																<input  class="quantity fw-bold text-black" min="0" readonly  name="quantity" value="@item.Quantity"
-															   	type="number">
-																<button  onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-																	class="plus btn btn-default"></button>
-															</form>
-															</div>
+                            <h4 style="margin-left :10px">
 
 
 
-														</div>
-													</div>
-												</div>
-										}
-									
-								}
+                                <br />  <span>Giá Sản phẩm : @item.Price</span>
+                                <br />  <span>Số lượng còn : @item.Quantity</span>
+                                <br /> <a class="btn" href="@Url.Action("DetailsProduct","Product",new {id=item.Id})">Chi tiết </a>
+                    
+                                <br /> <a class="btn" href="@Url.Action("Muahang","Home",new {id=item.Id})">Mua hàng </a>
+
+                            </h4>
+
+                        </div>
+                    </div>
+                </li>
+        </tr>
+            </ul>
+            }
+        }
 
 
-									<hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
-
-
-									<div class="d-flex justify-content-between p-2 mb-2" style="background-color: #e1f5fe;">
-										<h5 class="fw-bold mb-0">Total:</h5>
-										<h5 class="fw-bold mb-0">@tong</h5>
-									</div>
-
-								</div>
-								<div class="col-lg-6 px-5 py-4">
-
-									<h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Payment</h3>
-
-									<form class="mb-5" asp-action="ThanhToan" asp-controller="Home">
-
-										<div class="form-outline mb-5">
-											<label class="form-label" for="typeText">Địa chỉ</label>
-
-											<input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-												   value="" minlength="19" maxlength="19" />
-										</div>
-
-										<div class="form-outline mb-5">
-											<label class="form-label" for="typeName">Name </label>
-
-											<input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-												   value="" placeholder="Nhập tên" />
-										</div>
-
-											<div class="form-outline mb-5">
-										<label class="form-label" for="typeName">Stđ </label>
-
-											<input type="text" id="typeName" class="form-control form-control-lg" siez="10"
-												   value="" placeholder="0123345678" />
-										</div>
-											<div class="form-outline mb-5">
-										
-
-											<input type="radio"  siez="10"
-												  name="trangthai" value="2"  />
-												   <label class="form-label" for="typeName">Trả Sau </label>
-										</div>
-
-
-										<p><button class="btn btn-primary">Thanh Toán</button></p>
-
-										<h5 class="fw-bold mb-5" style="position: absolute; bottom: 0;">
-											<a href="@Url.Action("Index")"><i class="fas fa-angle-left me-2"></i>Back to shopping</a>
-										</h5>
-										
-									</form>
-
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-</div>
-*@

@@ -30,8 +30,9 @@ namespace QuanAoTheThaoC5.Controllers
         }
         public IActionResult Index()
         {
-            
+            ViewBag.Lpapa = LproApi.GetApi("Product");
             ViewBag.Lproduct = GetApiAsync();
+
             return View();
         }
 
@@ -96,6 +97,14 @@ namespace QuanAoTheThaoC5.Controllers
             SessionService.SetObjToJson(HttpContext.Session, "Cart", products);
 
             return RedirectToAction("Cart");
+        }
+        public IActionResult Muahang()
+        {
+            return View();
+        }
+
+        public IActionResult Thanhtoan() {
+            return RedirectToAction("Muahang");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

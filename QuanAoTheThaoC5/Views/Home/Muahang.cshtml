@@ -1,0 +1,23 @@
+﻿@model IEnumerable<QuanAoTheThaoC5.Models.Product>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Thanh Toán</h1>
+@foreach(var item in Model){
+    <div class="card" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="">
+        <div class="card-body">
+            <p class="card-text">Tên sản phẩm :  </p> <br />
+            <p class="card-text">Số lượng  :  </p> <br />
+            <p class="card-text">Đơn giá :  </p> <br />
+            <p class="card-text">Tổng tiền :  </p> <br />
+
+            <br /> <a class="btn" href="@Url.Action("Thanhtoan","Home",new {id=item.Id})">Chi tiết </a>
+        </div>
+    </div>
+
+
+
+}
