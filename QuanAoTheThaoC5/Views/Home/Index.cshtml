@@ -123,8 +123,8 @@
 
                         <h4 style="text-align:center">
                             <a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a>
-                            <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a>
-                            <a class="btn btn-primary" asp-action="AddToCart" asp-controller="Home" href="@Url.Action("AddToCart","Home",new {id=item.Id,Soluong=1})">$222.00</a>
+                            <a class="btn" href="@Url.Action("AddToCart","Home",new {id=item.Id,Soluong=1})">Add to <i class="icon-shopping-cart"></i></a>
+                            <a class="btn btn-primary" href="">$222.00</a>
                         </h4>
 
                     </div>

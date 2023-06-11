@@ -1,4 +1,4 @@
-﻿using AspNetCore;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QuanAoTheThaoC5.Models;
@@ -11,21 +11,27 @@ namespace QuanAoTheThaoC5.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-       // private readonly GetdataApi<Product> LproApi;
-        //public HomeController()
-        //{
-        //       LproApi = new GetdataApi<Product>();
-        //}
+        private readonly GetdataApi<Product> LproApi;
+        
         public HomeController(ILogger<HomeController> logger)
         {
             
             _logger = logger;
+            LproApi = new GetdataApi<Product>();
         }
-
+        public List<Product> GetApiAsync()
+        {
+            var url = $"https://localhost:7001/api/Product";
+            var httpClient = new HttpClient();
+            var respones =  httpClient.GetAsync(url).Result;
+            var dataapi = respones.Content.ReadAsStringAsync().Result;
+            var dataobj = JsonConvert.DeserializeObject<List<Product>>(dataapi);
+            return dataobj;
+        }
         public IActionResult Index()
         {
-            string a = "Product";
-           // ViewBag.Lproduct = LproApi.GetApiAsync(a);
+            
+            ViewBag.Lproduct = GetApiAsync();
             return View();
         }
 
@@ -80,9 +86,17 @@ namespace QuanAoTheThaoC5.Controllers
 
                 }
             }
-            return View("Cart");
+            return RedirectToAction("Cart");
         }
+        public IActionResult DeleteCartItem(Guid id)
+        {
+            var products = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
+            var p = products.Find(c => c.Id == id);
+            products.Remove(p);
+            SessionService.SetObjToJson(HttpContext.Session, "Cart", products);
 
+            return RedirectToAction("Cart");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
