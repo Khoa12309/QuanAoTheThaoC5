@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="UpdateProduct">
+        <form asp-action="UpdateProduct" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IDCategory" class="control-label"></label>
@@ -53,11 +53,7 @@
                 <span asp-validation-for="IDSize" class="text-danger"></span>
             </div>
          
-            <div class="form-group">
-                <label asp-for="IDSize" class="control-label"></label>
-                <input asp-for="IDSize" class="form-control" />
-                <span asp-validation-for="IDSize" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -82,6 +78,10 @@
                 <label asp-for="Status" class="control-label"></label>
                 <input asp-for="Status" class="form-control" />
                 <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label>Chọn ảnh từ Máy tính:</label>
+                <input type="file" action="" name="imageFile" multiple />
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -7,12 +7,12 @@ namespace QuanAoTheThaoC5.Service
 {
     public class GetdataApi<T> where T : class
     {
-        public async Task<List<T>> GetApiAsync(string data)
+        public List<T> GetApi(string data)
         {
             var url = $"https://localhost:7001/api/";
             var httpClient= new HttpClient();
-            var respones = await httpClient.GetAsync(url + data);
-            var dataapi = await respones.Content.ReadAsStringAsync();
+            var respones =  httpClient.GetAsync(url + data).Result;
+            var dataapi =  respones.Content.ReadAsStringAsync().Result;
             var dataobj = JsonConvert.DeserializeObject<List<T>>(dataapi);
             return dataobj;
         }
