@@ -26,35 +26,31 @@ namespace APIC5.Controllers
         }
 
         // GET api/<ColorController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+       
 
         // POST api/<ColorController>
-        [HttpPost]
-        public bool Create(string ColerCode, string Name)
+        [HttpPost("CreateColor")]
+        public bool Create(Color obj)
         {
             Color Item = new Color();
             Item.Id = Guid.NewGuid();
-            Item.ColerCode = ColerCode;
-            Item.Name = Name;
+            Item.ColerCode = obj.ColerCode;
+            Item.Name = obj.Name;
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<ColorController>/5
-        [HttpPut("{id}")]
-        public bool Put(Guid id, string ColerCode, string Name)
+        [HttpPut("UpdateColor")]
+        public bool Put(Color obj)
         {
-            Color Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
-            Item.ColerCode = ColerCode;
-            Item.Name = Name;
+            Color Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == obj.Id);
+            Item.ColerCode = obj.ColerCode;
+            Item.Name = obj.Name;
             return _allrepo.UpdateItem(Item);
         }
 
         // DELETE api/<ColorController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteColor")]
         public bool Delete(Guid id)
         {
             Color Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
