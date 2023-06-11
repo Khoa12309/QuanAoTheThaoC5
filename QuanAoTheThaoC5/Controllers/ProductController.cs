@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using QuanAoTheThaoC5.Models;
+using QuanAoTheThaoC5.Service;
 using System.Text;
 
 namespace QuanAoTheThaoC5.Controllers
@@ -9,10 +10,13 @@ namespace QuanAoTheThaoC5.Controllers
     public class ProductController : Controller
     {
         HttpClient httpClient;
+        GetdataApi<ProductImg> Limg;
         // GET: ProductController
         public ProductController()
         {
+
             httpClient=new HttpClient();
+            Limg=new GetdataApi<ProductImg>();
         }
         public List<Size> Sizes()
         {
@@ -25,7 +29,8 @@ namespace QuanAoTheThaoC5.Controllers
             // Lấy kết quả thu được bằng cách bóc dữ liệu Json
             var result = JsonConvert.DeserializeObject<List<Size>>(apiData);
             return result;
-        }public List<Category> LCategory()
+        }
+        public List<Category> LCategory()
         {
 
             string requestURL =
@@ -36,7 +41,8 @@ namespace QuanAoTheThaoC5.Controllers
             // Lấy kết quả thu được bằng cách bóc dữ liệu Json
             var result = JsonConvert.DeserializeObject<List<Category>>(apiData);
             return result;
-        }public List<Supplier> LSupplier()
+        }
+        public List<Supplier> LSupplier()
         {
 
             string requestURL =
@@ -56,6 +62,8 @@ namespace QuanAoTheThaoC5.Controllers
         // GET: ProductController/Details/5
        public async Task<IActionResult> ProductView()
         {
+            ViewBag.Limg = Limg.GetApi("ProductImg");
+
             var url = $"https://localhost:7001/api/Product";
             var respones=await httpClient.GetAsync("https://localhost:7001/api/Product");
             var dataapi= await respones.Content.ReadAsStringAsync();
@@ -147,7 +155,7 @@ namespace QuanAoTheThaoC5.Controllers
         // POST: ProductController/Edit/5
         [HttpPost]
       //  [ValidateAntiForgeryToken]
-        public async Task<ActionResult> UpdateProduct(Product obj)
+        public async Task<ActionResult> UpdateProduct(Product obj, [Bind] IFormFile imageFile)
         {
             ViewBag.LSize = Sizes();
             ViewBag.LCategory = LCategory();
@@ -161,6 +169,19 @@ namespace QuanAoTheThaoC5.Controllers
                 var httpClient = new HttpClient(); // Tại 1 httpClient để call API
                 var response = await httpClient.PutAsync($"https://localhost:7001/api/Product/UpdateProduct", content); // Lấy kết quả// ]Đọc ra string Json
                 string apiData = await response.Content.ReadAsStringAsync();
+                if (imageFile != null && imageFile.Length > 0) // Không null và không trống
+                {
+                    //Trỏ tới thư mục wwwroot để lát nữa thực hiện việc Copy sang
+                    var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot", "themes", "img", imageFile.FileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        // Thực hiện copy ảnh vừa chọn sang thư mục mới (wwwroot)
+                        imageFile.CopyTo(stream);
+                    }
+                    // Gán lại giá trị cho Description của đối tượng bằng tên file ảnh đã được sao chép
+                }
+                Addimg(obj.Id, imageFile.FileName);
                 return RedirectToAction("ProductView");
             }
             catch
@@ -181,7 +202,11 @@ namespace QuanAoTheThaoC5.Controllers
         }
         public async Task<IActionResult> DetailsProduct(Guid id)
         {
-
+            ViewBag.LSize = Sizes();
+            ViewBag.LCategory = LCategory();
+            ViewBag.LSupplier = LSupplier();
+          
+            ViewBag.Limg = Limg.GetApi("ProductImg");
             var respones = await httpClient.GetAsync("https://localhost:7001/api/Product");
             var dataapi = await respones.Content.ReadAsStringAsync();
             List<Product> dataobj = JsonConvert.DeserializeObject<List<Product>>(dataapi);

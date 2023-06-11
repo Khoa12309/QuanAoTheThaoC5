@@ -13,8 +13,8 @@
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
 
-        public virtual User User { get; set; }
-        public virtual Voucher Voucher { get; set; }
+        public virtual User? User { get; set; }
+        public virtual Voucher? Voucher { get; set; }
 
     }
 }
