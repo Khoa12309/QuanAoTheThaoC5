@@ -37,7 +37,6 @@ namespace APIC5.Controllers
         [HttpPost]
         public bool Create(Guid IDCategory, Guid IDSupplier, Guid IDSize, string Name, string Description, int Quantity, double Price, int Status)
         {
-
             Product Item = new Product();
             Item.Id = Guid.NewGuid();
             Item.IDCategory = IDCategory;
