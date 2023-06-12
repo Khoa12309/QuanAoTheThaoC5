@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,6 +22,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/themes/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/themes/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="~/themes/images/ico/apple-touch-icon-57-precomposed.png">
+    <link href="~/css/detailsproduct.css" rel="stylesheet" />
+    <link href="~/css/cart.css" rel="stylesheet" />
     <style type="text/css" id="enject"></style>
 </head>
 <body>
@@ -57,19 +60,27 @@
                         <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
                     </form>
                     <ul id="topMenu" class="nav pull-right">
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Role" asp-action="RoleView">Role</a>
-                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ProductImg" asp-action="ImgView">Role</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Voucher" asp-action="VoucherView">Voucher</a>
-                        </li><li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="UserView">User</a>
                         </li>
-                        </li><li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Size" asp-action="SizeView">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Size" asp-action="SizeView">Size</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="ProductView">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Supplier" asp-action="GetList">Supplier</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ColorDetails" asp-action="GetList">ColorDetails</a>
                         </li>
                         <li class="">
                             <a href="#login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
@@ -219,9 +230,9 @@
                 <!-- Sidebar end=============================================== -->
                 <div class="span9">
 
-                    
+
                     @RenderBody()
-                    
+
 
                 </div>
             </div>
@@ -272,8 +283,9 @@
 
     <script src="~/themes/js/bootshop.js"></script>
     <script src="~/themes/js/jquery.lightbox-0.5.js"></script>
+    <script src="~/js/site.js"></script>
 
-     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
     <span id="~/themesBtn"></span>
 </body>
 </html>

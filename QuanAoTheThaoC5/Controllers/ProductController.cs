@@ -22,5 +22,23 @@ namespace QuanAoTheThaoC5.Controllers
         {
             return View();
         }
+        public IActionResult Details()
+        {
+            return View();
+        }
+        [HttpGet]
+        public async Task< IActionResult> Details(Guid id)
+        {
+
+            string requestURL = $"https://localhost:7001/api/Product/{id}";
+            var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+            var response = await httpClient.GetAsync(requestURL); // Lấy kết quả
+                                                                  // Đọc ra string Json
+            string apiData = await response.Content.ReadAsStringAsync();
+            // Lấy kết quả thu được bằng cách bóc dữ liệu Json
+            Product result = JsonConvert.DeserializeObject<Product>(apiData);
+
+            return View(result);
+        }
     }
 }

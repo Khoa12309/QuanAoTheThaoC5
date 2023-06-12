@@ -28,9 +28,10 @@ namespace APIC5.Controllers
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetById(Guid id)
         {
-            return "value";
+            var products = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
+            return Ok();
         }
 
         // POST api/<ProductController>
