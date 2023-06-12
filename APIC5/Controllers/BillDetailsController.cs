@@ -35,27 +35,31 @@ namespace APIC5.Controllers
         }
 
         // POST api/<ValuesController>
-        [HttpPost]
-        public bool Create(Guid IDBill, Guid IDProduct, int Amount)
+        [HttpPost("CreateBillDetails")]
+        public bool Create(BillDetails obj)
         {
-            Product product =_prod.GetAllItems().FirstOrDefault(c=>c.Id==IDProduct);
-            BillDetails billDetails = _allrepo.GetAllItems().FirstOrDefault(c => c.IDProduct == product.Id && c.IDBill == IDBill);
-
-            if (product.Quantity<Amount+billDetails.Amount)
+            Product product =_prod.GetAllItems().FirstOrDefault(c=>c.Id==obj.IDProduct);
+            BillDetails billDetails = _allrepo.GetAllItems().FirstOrDefault(c => c.IDProduct == product.Id && c.IDBill == obj.IDBill);
+            var sl = 0;
+            if (billDetails != null)
+            {
+                sl = billDetails.Amount;
+            }
+            if (product.Quantity<obj.Amount+sl)
             {
                 return false;
             }
             BillDetails Item = new BillDetails();
             Item.ID = Guid.NewGuid();
-            Item.IDBill = IDBill;
-            Item.IDProduct = IDProduct;
+            Item.IDBill = obj.IDBill;
+            Item.IDProduct = obj.IDProduct;
             Item.Price = product.Price;          
-            Item.Amount = Amount;
-            product.Quantity-=Amount;
-            if (_allrepo.GetAllItems().Any(c=>c.IDProduct==product.Id&&c.IDBill==IDBill))
+            Item.Amount = obj.Amount;
+            product.Quantity-= obj.Amount;
+            if (_allrepo.GetAllItems().Any(c=>c.IDProduct==product.Id&&c.IDBill== obj.IDBill))
             {
                
-                billDetails.Amount+=Amount;                
+                billDetails.Amount+= obj.Amount;                
                 _prod.UpdateItem(product);
                 return _allrepo.UpdateItem(billDetails);
             }

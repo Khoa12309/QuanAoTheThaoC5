@@ -2,22 +2,45 @@
 
 @{
     ViewData["Title"] = "View";
+    
+                     var a=   Convert.ToDouble(@ViewBag.data.Quantity) * Convert.ToDouble(@ViewBag.data.Price);
+                    
 }
 
 <h1>Thanh Toán</h1>
-@foreach(var item in Model){
+@{
+    if (ViewBag.data==null)
+    {
+    @foreach (var item in Model)
+        {
     <div class="card" style="width: 18rem;">
-        <img src="" class="card-img-top" alt="">
-        <div class="card-body">
-            <p class="card-text">Tên sản phẩm :  </p> <br />
-            <p class="card-text">Số lượng  :  </p> <br />
-            <p class="card-text">Đơn giá :  </p> <br />
-            <p class="card-text">Tổng tiền :  </p> <br />
+                            <img src="" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <p class="card-text">Tên sản phẩm : @item.Name </p> <br />
+                                <p class="card-text">Số lượng  :  </p>@item.Quantity <br />
+                                <p class="card-text">Đơn giá : @item.Price </p> <br />
+                                <p class="card-text">Tổng tiền :  </p> <br />
 
-            <br /> <a class="btn" href="@Url.Action("Thanhtoan","Home",new {id=item.Id})">Chi tiết </a>
-        </div>
+                                <br /> <a class="btn" href="@Url.Action("Thanhtoan","Home",new {id=item.Id})">Chi tiết </a>
+                            </div>
     </div>
 
-    ///
+            ///
+
+        }
+    }
+    else
+    {
+    <div class="card" style="width: 18rem;">
+                        <img src="~/themes/img/@ViewBag.img.URl" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <p class="card-text">Tên sản phẩm : @ViewBag.data.Name  </p> <br />
+                            <p class="card-text">Số lượng  : @ViewBag.data.Quantity  </p> <br />
+                            <p class="card-text">Đơn giá : @ViewBag.data.Price </p> <br />
+                            <p class="card-text">Tổng tiền : @a </p> <br />
+                            <br /> <a class="btn" href="@Url.Action("Thanhtoan","Home",new {id=ViewBag.data.Id})">Thanh Toán</a>
+                        </div>
+    </div>
+    }
 
 }
