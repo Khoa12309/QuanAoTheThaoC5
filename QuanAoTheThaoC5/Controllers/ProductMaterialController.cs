@@ -21,7 +21,7 @@ namespace QuanAoTheThaoC5.Controllers
             string apiData = await response.Content.ReadAsStringAsync();
             // Lấy kết quả thu được bằng cách bóc dữ liệu Json
             List<ProductMaterial> result = JsonConvert.DeserializeObject<List<ProductMaterial>>(apiData);
-            return View(result);
+            return View(result);///
         }
         [HttpGet]
         public IActionResult CreateProductMaterial()
