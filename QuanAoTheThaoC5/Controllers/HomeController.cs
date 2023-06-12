@@ -30,7 +30,10 @@ namespace QuanAoTheThaoC5.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.Lpapa = LproApi.GetApi("Product");
+
+        
+
+
             ViewBag.Lproduct = GetApiAsync();
 
             return View();
