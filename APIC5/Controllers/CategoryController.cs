@@ -26,35 +26,31 @@ namespace APIC5.Controllers
         }
 
         // GET api/<CategoryController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+       
 
         // POST api/<CategoryController>
-        [HttpPost]
-        public bool Create(string CategoryName, string Description)
+        [HttpPost("CreateCategory")]
+        public bool Create(Category obj)
         {
             Category Item = new Category();
             Item.CategoryId = Guid.NewGuid();
-            Item.CategoryName = CategoryName;
-            Item.Description = Description;
+            Item.CategoryName = obj.CategoryName;
+            Item.Description = obj.Description;
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<CategoryController>/5
-        [HttpPut("{id}")]
-        public bool Put(Guid id, string CategoryName, string Description)
+        [HttpPut("UpdateCategory")]
+        public bool Put(Category obj)
         {
-            Category Item = _allrepo.GetAllItems().FirstOrDefault(c => c.CategoryId == id);
-            Item.CategoryName = CategoryName;
-            Item.Description = Description;
+            Category Item = _allrepo.GetAllItems().FirstOrDefault(c => c.CategoryId == obj.CategoryId);
+            Item.CategoryName = obj.CategoryName;
+            Item.Description = obj.Description;
             return _allrepo.UpdateItem(Item);
         }
 
         // DELETE api/<CategoryController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteCategory")]
         public bool Delete(Guid id)
         {
             Category Item = _allrepo.GetAllItems().FirstOrDefault(c => c.CategoryId == id);

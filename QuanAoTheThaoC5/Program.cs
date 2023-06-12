@@ -1,13 +1,14 @@
 
+using QuanAoTheThaoC5.Service;
 var builder = WebApplication.CreateBuilder(args);
-
-
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession(); // Thêm d?ch v? phiên vào container
-
+builder.Services.AddSession();
 var app = builder.Build();
+builder.Services.AddDistributedMemoryCache();
+
+
 
 
 // Configure the HTTP request pipeline.
@@ -20,11 +21,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
-
 app.UseAuthorization();
-app.UseSession(); // S? d?ng phiên trong pipeline
 
 app.MapControllerRoute(
     name: "default",

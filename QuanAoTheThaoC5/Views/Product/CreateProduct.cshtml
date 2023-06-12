@@ -1,0 +1,105 @@
+﻿@model QuanAoTheThaoC5.Models.Product
+
+@{
+    ViewData["Title"] = "CreateProduct";
+}
+
+<h1>CreateProduct</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateProduct" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          
+            <div class="form-group">
+                <label asp-for="IDCategory" class="control-label"></label>
+                <select asp-for="IDCategory" class="form-select" aria-label="Default select example">
+                    <option selected>Chọn vai trò</option>
+                    @{   
+                        foreach (var item in ViewBag.LCategory )
+                        {
+                                            <option value="@item.CategoryId">@item.CategoryName</option>
+                        }
+                    }
+                </select>
+              
+                <span asp-validation-for="IDCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDSupplier" class="control-label"></label>
+                <select asp-for="IDSupplier" class="form-select" aria-label="Default select example">
+                    <option selected>Chọn vai trò</option>
+                    @{
+                        foreach (var item in ViewBag.LSupplier)
+                        {
+                                            <option value="@item.Id">@item.SupplierName</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="IDSupplier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDSize" class="control-label"></label>
+                <select asp-for="IDSize" class="form-select" aria-label="Default select example">
+                    <option selected>Chọn vai trò</option>
+                    @{
+                        foreach (var item in ViewBag.LSize)
+                        {
+                                            <option value="@item.SizeId">@item.SizeName</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="IDSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+               <div class="form-group">
+                <label>Chọn ảnh từ Máy tính:</label>
+                <input type="file" action="" name="imageFile" multiple />
+            </div>
+            
+              
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+   
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+   
+}
+

@@ -26,14 +26,7 @@ namespace APIC5.Controllers
             return _allrepo.GetAllItems();
         }
 
-        // GET api/<ProductMaterialController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<ProductMaterialController>
+          
         [HttpPost]
         public bool Create(string name)
         {
