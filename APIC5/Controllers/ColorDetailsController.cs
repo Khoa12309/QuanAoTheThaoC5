@@ -34,11 +34,11 @@ namespace APIC5.Controllers
         }
 
         // POST api/<ColorDetailsController>
-        [HttpPost]
+        [HttpPost("create")]
         public bool Create(Guid ProductID, Guid ColorID, string Description)
         {
-            
-        ColorDetails Item = new ColorDetails();
+
+            ColorDetails Item = new ColorDetails();
             Item.Id = Guid.NewGuid();
             Item.ColorID = ColorID;
             Item.Description = Description;
@@ -47,18 +47,18 @@ namespace APIC5.Controllers
         }
 
         // PUT api/<ColorDetailsController>/5
-        [HttpPut("{id}")]
+        [HttpPost("update")]
         public bool Put(Guid id, Guid ProductID, Guid ColorID, string Description)
         {
             ColorDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
+            Item.ProductID = ProductID;
             Item.ColorID = ColorID;
             Item.Description = Description;
-            Item.ProductID = ProductID;
             return _allrepo.UpdateItem(Item);
         }
 
         // DELETE api/<ColorDetailsController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete")]
         public bool Delete(Guid id)
         {
             ColorDetails Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
