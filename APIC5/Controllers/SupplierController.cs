@@ -33,7 +33,7 @@ namespace APIC5.Controllers
         }
 
         // POST api/<SupplierController>
-        [HttpPost]
+        [HttpPost("create")]
         public bool Create(string SupllierCode, string SupplierName, string PhoneNumber, string Address, string Descripton)
         {
             Supplier Item = new Supplier();
@@ -47,7 +47,7 @@ namespace APIC5.Controllers
         }
 
         // PUT api/<SupplierController>/5
-        [HttpPut("{id}")]
+        [HttpPost("update")]
         public bool Put(Guid id, string SupllierCode, string SupplierName, string PhoneNumber, string Address, string Descripton)
         {
             Supplier Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
@@ -60,7 +60,7 @@ namespace APIC5.Controllers
         }
 
         // DELETE api/<SupplierController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete")]
         public bool Delete(Guid id)
         {
             Supplier Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
