@@ -104,6 +104,7 @@ namespace QuanAoTheThaoC5.Controllers
         }
 
         public IActionResult Thanhtoan() {
+
             return RedirectToAction("Muahang");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
