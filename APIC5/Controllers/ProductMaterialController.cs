@@ -26,27 +26,34 @@ namespace APIC5.Controllers
             return _allrepo.GetAllItems();
         }
 
-          
-        [HttpPost]
-        public bool Create(string name)
+        // GET api/<ProductMaterialController>/5
+        [HttpGet("{id}")]
+        public ProductMaterial Get(Guid id)
         {
+            return _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);
+        }
+
+        // POST api/<ProductMaterialController>
+        [HttpPost("CreateProductMaterial")]
+        public bool Create(ProductMaterial item) { 
+
             ProductMaterial Item = new ProductMaterial();
             Item.Id = Guid.NewGuid();
-            Item.Name = name;
+            Item.Name = item.Name;
             return _allrepo.CreateItem(Item);
         }
 
         // PUT api/<ProductMaterialController>/5
-        [HttpPut("{id}")]
-        public bool Update(Guid id,string name)
+        [HttpPut("UpdateProductMaterial")]
+        public bool Update(ProductMaterial item)
         {
-            ProductMaterial Item= _allrepo.GetAllItems().FirstOrDefault(c=>c.Id==id);
-            Item.Name=name;
+            ProductMaterial Item= _allrepo.GetAllItems().FirstOrDefault(c=>c.Id==item.Id);
+            Item.Name=item.Name;
             return _allrepo.UpdateItem(Item);
         }
 
         // DELETE api/<ProductMaterialController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteProductMaterial")]
         public bool Delete(Guid id)
         {
             ProductMaterial Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);

@@ -10,7 +10,11 @@ namespace QuanAoTheThaoC5.ContextDataBase
         public ShoppingDbContext(DbContextOptions<ShoppingDbContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=HUYDX\SQLEXPRESS;Initial Catalog=QuanAoC5;Persist Security Info=True;User ID=Huydxph20596;Password=123456");           
+
+            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-9R0SL3PF\SQLEXPRESS;Initial Catalog=QuanAoC55;User ID=giangnt2;Password=123456");           
+
+             
+
         }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
