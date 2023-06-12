@@ -25,6 +25,7 @@ namespace QuanAoTheThaoC5.Service
             }
             else return new List<Product>();
         }
+  
         public static User GetUserFromSession(ISession session, string key)
         {
             var data = session.GetString(key);

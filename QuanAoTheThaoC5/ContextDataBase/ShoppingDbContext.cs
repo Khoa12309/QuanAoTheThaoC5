@@ -11,7 +11,8 @@ namespace QuanAoTheThaoC5.ContextDataBase
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer(@"Data Source=HUYDX\SQLEXPRESS;Initial Catalog=QuanAoC5;Persist Security Info=True;User ID=Huydxph20596;Password=123456");           
+
+            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-N6FK027M;Initial Catalog=QuanAoC5;Persist Security Info=True;User ID=khoaph20877;Password=123456");           
 
              
 

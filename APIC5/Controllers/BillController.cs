@@ -33,19 +33,19 @@ namespace APIC5.Controllers
         }
 
         // POST api/<BillController>
-        [HttpPost]
-        public bool Create(Guid IDUser, Guid IDVoucher, DateTime CreateDate, int Status, double TotalMoney, double TransportFee, string PhoneNumber, string Address)
+        [HttpPost("CreateBill")]
+        public bool Create(Bill obj)
         {
             Bill Item = new Bill();
-            Item.Id = Guid.NewGuid();
-            Item.IDUser = IDUser;
-            Item.IDVoucher = IDVoucher;
-            Item.Status = Status;
-            Item.TotalMoney = TotalMoney;
-            Item.TransportFee = TransportFee;
-            Item.PhoneNumber = PhoneNumber;
-            Item.Address = Address;
-            Item.CreateDate = CreateDate;
+            Item.Id = obj.Id;
+            Item.IDUser = obj.IDUser;
+            Item.IDVoucher = obj.IDVoucher;
+            Item.Status = obj.Status;
+            Item.TotalMoney = obj.TotalMoney;
+            Item.TransportFee = obj.TransportFee;
+            Item.PhoneNumber = obj.PhoneNumber;
+            Item.Address = obj.Address;
+            Item.CreateDate = obj.CreateDate;
             return _allrepo.CreateItem(Item);
         }
 
