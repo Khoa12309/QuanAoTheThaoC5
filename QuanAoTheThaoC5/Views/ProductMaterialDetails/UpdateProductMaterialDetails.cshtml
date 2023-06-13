@@ -12,15 +12,32 @@
     <div class="col-md-4">
         <form asp-action="UpdateProductMaterialDetails">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
+
+
             <div class="form-group">
-                <label asp-for="IDProductMaterial" class="control-label"></label>
-                <input asp-for="IDProductMaterial" class="form-control" />
+                <label class="control-label">ProductMaterial</label>
+                <select asp-for="IDProductMaterial" class="form-select" aria-label="Default select example">
+                    <option selected>Chọn chất liệu</option>
+                    @{
+                        foreach (var item in ViewBag.LstP)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
                 <span asp-validation-for="IDProductMaterial" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IDProduct" class="control-label"></label>
-                <input asp-for="IDProduct" class="form-control" />
+                <label class="control-label">Product</label>
+                <select asp-for="IDProduct" class="form-select" aria-label="Default select example">
+                    <option selected>Chọn sản phẩm</option>
+                    @{
+                        foreach (var item in ViewBag.lstsp)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
                 <span asp-validation-for="IDProduct" class="text-danger"></span>
             </div>
             <div class="form-group">

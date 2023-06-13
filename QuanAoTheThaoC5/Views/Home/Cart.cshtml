@@ -6,7 +6,7 @@
 	double tong = 0;
 }
 
-<h4> Home Page </h4>
+<h4> Cart </h4>
 
 	 	<section class="shopping-cart dark">
  
@@ -29,7 +29,7 @@
 
 
                                 <br />  <span>Giá Sản phẩm : @item.Price</span>
-                                <br />  <span>Số lượng còn : @item.Quantity</span>
+                                <br />  <span>Số lượng : @item.Quantity</span>
                                 <br /> <a class="btn" href="@Url.Action("DetailsProduct","Product",new {id=item.Id})">Chi tiết </a>                    
                                 <br /> <a class="btn" href="@Url.Action("Muahang","Home",new {id=item.Id})">Mua hàng </a>
 

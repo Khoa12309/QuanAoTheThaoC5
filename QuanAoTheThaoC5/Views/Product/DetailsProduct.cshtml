@@ -43,9 +43,9 @@
               margin-top: 64px;
             ">
         <h3 style="font-size: 20px; padding-bottom: 10px; padding-left: 10px">
-            @Html.DisplayFor(model => model.Name)
+            Tên sản phẩm : @Html.DisplayFor(model => model.Name)
         </h3>
-        <h3 style="font-size: 20px; padding-bottom: 10px; padding-left: 10px; color: red">@Html.DisplayFor(model => model.Price)</h3>
+        <h3 style="font-size: 20px; padding-bottom: 10px; padding-left: 10px; color: red">Giá : @Html.DisplayFor(model => model.Price)</h3>
         <h3 style="font-size: 14px; padding-bottom: 10px; padding-left: 10px">Số lượng: @Html.DisplayFor(model => model.Quantity)</h3>
 
         <span>
@@ -62,9 +62,8 @@
         <h3 style="font-size: 14px; padding-bottom: 10px; padding-left: 10px">Mô tả: @Html.DisplayFor(model => model.Description)</h3>
         <div class="toptwo">
             <div class="btn-add">
-                <button style="background-color: rgb(237, 70, 70); color: white">
-                    <b>Thêm vào giỏ</b>
-                </button>
+             
+                <button style="background-color: rgb(237, 70, 70); color: white"><a style="text-decoration:none;color:white" href="@Url.Action("AddToCart","Home",new {id=Model.Id,Soluong=1})"><b>Thêm vào giỏ</b> </a></button>
             </div>
             <div class="btn-mua">
                 <button><b style="color: rgb(237, 70, 70)">Mua ngay</b></button>

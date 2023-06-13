@@ -7,17 +7,13 @@
 <h1>ImgView</h1>
 
 <p>
-    <a asp-action="CreateImg">Create New</a>
+
+    <button class="btn btn-primary"> <a asp-action="CreateImg" class="text-decoration-none ; text-light">Create New</a></button>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IDProduct)
-            </th>
+         
             <th>
                 @Html.DisplayNameFor(model => model.URl)
             </th>
@@ -27,20 +23,16 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IDProduct)
-            </td>
+        
             <td>
                     <img src="~/themes/img/@item.URl" alt="Fjords" style="width:100%">
 
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "DeleteImg", new { id=item.Id })
+          
+     
+  
+                    @Html.ActionLink("Delete", "DeleteImg", new { id=item.Id},new{@Class="btn btn-danger"} )
             </td>
         </tr>
 }

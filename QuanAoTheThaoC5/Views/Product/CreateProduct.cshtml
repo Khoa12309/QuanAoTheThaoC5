@@ -14,9 +14,9 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           
             <div class="form-group">
-                <label asp-for="IDCategory" class="control-label"></label>
+                <label  class="control-label">Category</label>
                 <select asp-for="IDCategory" class="form-select" aria-label="Default select example">
-                    <option selected>Chọn vai trò</option>
+                    <option selected>Chọn loại sp</option>
                     @{   
                         foreach (var item in ViewBag.LCategory )
                         {
@@ -28,9 +28,9 @@
                 <span asp-validation-for="IDCategory" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IDSupplier" class="control-label"></label>
+                <label class="control-label">Supplier</label>
                 <select asp-for="IDSupplier" class="form-select" aria-label="Default select example">
-                    <option selected>Chọn vai trò</option>
+                    <option selected>Chọn hãng</option>
                     @{
                         foreach (var item in ViewBag.LSupplier)
                         {
@@ -38,12 +38,12 @@
                         }
                     }
                 </select>
-                <span asp-validation-for="IDSupplier" class="text-danger"></span>
+                <span asp-validation-for="Supplier" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IDSize" class="control-label"></label>
+                <label class="control-label">IDSize</label>
                 <select asp-for="IDSize" class="form-select" aria-label="Default select example">
-                    <option selected>Chọn vai trò</option>
+                    <option selected>Chọn size</option>
                     @{
                         foreach (var item in ViewBag.LSize)
                         {
