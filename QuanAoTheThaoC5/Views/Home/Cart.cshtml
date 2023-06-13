@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuanAoTheThaoC5.Models.Product>
+﻿@model IEnumerable<QuanAoTheThaoC5.Models.ProductImg>
 
 @{
 	ViewData["Title"] = "Cart";
@@ -8,27 +8,29 @@
 
 <h4> Home Page </h4>
 
-
+	 	<section class="shopping-cart dark">
  
         @{
-            foreach (var item in Model)
+        foreach (var item in ViewBag.product)
         {
+            
+                        
+             var a = Model.FirstOrDefault(c => c.IDProduct == item.Id);
+                        
             <ul class="thumbnails">
             <tr>
                 <li class="span3">
                     <div class="thumbnail">
-                        <a href="product_details.html"><img src="~/themes/images/products/6.jpg" alt="" /></a>
+                        <a href="product_details.html"><img src="~/themes/img/@a.URl" alt="" /></a>
                         <div class="caption">
                             <h5 style="margin-left :10px">@item.Name</h5>
 
                             <h4 style="margin-left :10px">
 
 
-
                                 <br />  <span>Giá Sản phẩm : @item.Price</span>
                                 <br />  <span>Số lượng còn : @item.Quantity</span>
-                                <br /> <a class="btn" href="@Url.Action("DetailsProduct","Product",new {id=item.Id})">Chi tiết </a>
-                    
+                                <br /> <a class="btn" href="@Url.Action("DetailsProduct","Product",new {id=item.Id})">Chi tiết </a>                    
                                 <br /> <a class="btn" href="@Url.Action("Muahang","Home",new {id=item.Id})">Mua hàng </a>
 
                             </h4>
@@ -40,6 +42,5 @@
             </ul>
             }
         }
-
 
 

@@ -39,7 +39,7 @@ namespace APIC5.Controllers
         }
 
         // PUT api/<ColorController>/5
-        [HttpPut("{id}")]
+        [HttpPut("UpdateProductImg")]
         public bool Put(Guid id, Guid IDProduct, string URL)
         {
             ProductImg Item = _allrepo.GetAllItems().FirstOrDefault(c => c.Id == id);

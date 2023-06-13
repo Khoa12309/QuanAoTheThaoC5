@@ -62,6 +62,32 @@ namespace QuanAoTheThaoC5.Controllers
 
             return RedirectToAction("ImgView");
         }
+        public async Task<IActionResult> UpdateImg(ProductImg obj, [Bind] IFormFile imageFile)
+        {
+            if (imageFile != null && imageFile.Length > 0) // Không null và không trống
+            {
+                //Trỏ tới thư mục wwwroot để lát nữa thực hiện việc Copy sang
+                var path = Path.Combine(
+                    Directory.GetCurrentDirectory(), "wwwroot", "themes", "img", imageFile.FileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    // Thực hiện copy ảnh vừa chọn sang thư mục mới (wwwroot)
+                    imageFile.CopyTo(stream);
+                }
+                // Gán lại giá trị cho Description của đối tượng bằng tên file ảnh đã được sao chép
+                obj.URl = imageFile.FileName;
+            }
+           
+            string data = JsonConvert.SerializeObject(obj);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            string requestURL =
+            $"https://localhost:7001/api/ProductImg" +$"/UpdateProductImg?id={obj.Id}&IDProduct={obj.IDProduct}&URl={obj.URl}";
+            var httpClient = new HttpClient(); // Tại 1 httpClient để call API
+            var response = await httpClient.PostAsync(requestURL , content); // Lấy kết quả// ]Đọc ra string Json
+            string apiData = await response.Content.ReadAsStringAsync();
+
+            return RedirectToAction("ImgView");
+        }
         public async Task<IActionResult> DeleteImg(Guid id)
         {
             string requestURL =

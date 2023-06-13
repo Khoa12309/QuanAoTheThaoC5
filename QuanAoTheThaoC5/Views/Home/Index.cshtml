@@ -1,31 +1,44 @@
-﻿@{
+﻿@model IEnumerable<QuanAoTheThaoC5.Models.ProductImg>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <h4> Home Page </h4>
 <ul class="thumbnails">
+
     @{
+
         foreach (var item in ViewBag.Lproduct)
         {
-            <li class="span3" >
-                <div class="thumbnail">
-                    <a href="product_details.html"><img src="~/themes/images/products/6.jpg" alt="" /></a>
-                    <div class="caption">
-                        <h5 style="margin-left :10px">@item.Name</h5>
-                   
-                        <h4 style="margin-left :10px">
-                            <a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a>
-                            <a class="btn" href="@Url.Action("AddToCart","Home",new {id=item.Id,Soluong=1})">Add to cart </a>
-                          
-                          <br/>  <span>Giá Sản phẩm : @item.Price</span>
-                          <br/>  <span>Số lượng  còn : @item.Quantity</span>
-                          <br /> <a class="btn" href="@Url.Action("DetailsProduct","Product",new {id=item.Id})">Chi tiết </a>
-                           
-                        </h4>
+                <li class="span3" >
+                    <div class="thumbnail">
 
+
+
+
+                        @{
+                        var a = Model.FirstOrDefault(c => c.IDProduct == item.Id);
+                        }
+
+
+                        <a href= href="@Url.Action("DetailsProduct","Product",new {id=item.Id})"><img src="~/themes/img/@a.URl" alt="" /></a>
+                        <div class="caption">
+                            <h5 style="margin-left :10px">@item.Name</h5>
+                       
+                            <h4 style="margin-left :10px">
+                                <a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a>
+                                <a class="btn" href="@Url.Action("AddToCart","Home",new {id=item.Id,Soluong=1})">Add to cart </a>
+                              
+                              <br/>  <span>Giá Sản phẩm : @item.Price</span>
+                              <br/>  <span>Số lượng  còn : @item.Quantity</span>
+                              <br /> <a class="btn" href="@Url.Action("DetailsProduct","Product",new {id=item.Id})">Chi tiết </a>
+                               
+                            </h4>
+
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
         }
     }
 </ul>

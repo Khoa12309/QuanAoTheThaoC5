@@ -179,9 +179,10 @@ namespace QuanAoTheThaoC5.Controllers
                         // Thực hiện copy ảnh vừa chọn sang thư mục mới (wwwroot)
                         imageFile.CopyTo(stream);
                     }
+                Addimg(obj.Id, imageFile.FileName);
                     // Gán lại giá trị cho Description của đối tượng bằng tên file ảnh đã được sao chép
                 }
-                Addimg(obj.Id, imageFile.FileName);
+
                 return RedirectToAction("ProductView");
             }
             catch
