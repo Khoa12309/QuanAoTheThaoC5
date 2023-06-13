@@ -13,10 +13,6 @@
         {
                 <li class="span3" >
                     <div class="thumbnail">
-
-
-
-
                         @{
                         var a = Model.FirstOrDefault(c => c.IDProduct == item.Id);
                         }
@@ -27,7 +23,6 @@
                             <h5 style="margin-left :10px">@item.Name</h5>
                        
                             <h4 style="margin-left :10px">
-                                <a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a>
                                 <a class="btn" href="@Url.Action("AddToCart","Home",new {id=item.Id,Soluong=1})">Add to cart </a>
                               
                               <br/>  <span>Giá Sản phẩm : @item.Price</span>

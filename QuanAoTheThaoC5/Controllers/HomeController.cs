@@ -23,6 +23,23 @@ namespace QuanAoTheThaoC5.Controllers
             LproApi = new GetdataApi<Product>();
             LproImgApi = new GetdataApi<ProductImg>();
         }
+        public IActionResult tanggiam(Guid id, int quantity)
+        {
+            var product = LproApi.GetApi("Product").FirstOrDefault(c=>c.Id==id);
+
+            var products = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
+           
+            if (products.FirstOrDefault(c=>c.Id==id).Quantity > product.Quantity)
+            {
+                product.Quantity = quantity;
+                products.Remove(product);
+                products.Add(product);
+            }
+
+            SessionService.SetObjToJson(HttpContext.Session, "Cart", products);
+
+            return RedirectToAction("Cart");
+        }
         public List<Product> GetApiAsync()
         {
             var url = $"https://localhost:7001/api/Product";
