@@ -7,14 +7,14 @@
 <h1>SizeView</h1>
 
 <p>
-    <a asp-action="CreateSize">Create New</a>
+   
+
+    <button class="btn btn-primary"> <a asp-action="CreateSize" class="text-decoration-none ; text-light">Create New</a></button>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SizeId)
-            </th>
+         
             <th>
                 @Html.DisplayNameFor(model => model.SizeName)
             </th>
@@ -27,9 +27,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SizeId)
-            </td>
+      
             <td>
                 @Html.DisplayFor(modelItem => item.SizeName)
             </td>
@@ -37,9 +35,15 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditSize", new { id=item.SizeId }) |
-                    @Html.ActionLink("Delete", "DeleteSize", new { id=item.SizeId  })
+             
+
+                    
+            @Html.ActionLink("Edit", "EditSize", new { id=item.SizeId},new{@Class="btn btn-primary"})
+            
+            @Html.ActionLink("Delete", "DeleteSize", new { id=item.SizeId},new{@Class="btn btn-danger"} )
+
             </td>
+           
         </tr>
 }
     </tbody>
