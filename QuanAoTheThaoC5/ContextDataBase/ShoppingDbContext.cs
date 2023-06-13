@@ -12,7 +12,7 @@ namespace QuanAoTheThaoC5.ContextDataBase
         {
 
 
-            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-9R0SL3PF\SQLEXPRESS;Initial Catalog=QuanAoC55;User ID=giangnt2;Password=123456");           
+            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-DEB8BBEA\SQLEXPRESS;Initial Catalog=NET1055;User ID=anhpnt32;Password=123456");           
 
              
 
