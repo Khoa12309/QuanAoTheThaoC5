@@ -25,18 +25,21 @@ namespace QuanAoTheThaoC5.Controllers
         }
         public IActionResult tanggiam(Guid id, int quantity)
         {
-            var product = LproApi.GetApi("Product").FirstOrDefault(c=>c.Id==id);
+            var productDB = LproApi.GetApi("Product").FirstOrDefault(c=>c.Id==id);
 
-            var products = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
-           
-            if (products.FirstOrDefault(c=>c.Id==id).Quantity > product.Quantity)
+            var DataSS = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
+            var productSS = DataSS.FirstOrDefault(c => c.Id == id);
+
+
+
+            if (productSS.Quantity < productDB.Quantity)
             {
-                product.Quantity = quantity;
-                products.Remove(product);
-                products.Add(product);
+                productSS.Quantity = quantity;
+                DataSS.Remove(productSS);
+                DataSS.Add(productSS);
             }
 
-            SessionService.SetObjToJson(HttpContext.Session, "Cart", products);
+            SessionService.SetObjToJson(HttpContext.Session, "Cart", DataSS);
 
             return RedirectToAction("Cart");
         }
@@ -154,6 +157,8 @@ namespace QuanAoTheThaoC5.Controllers
         }
         public IActionResult Muahang(Guid id)
         {
+            HttpClient client = new HttpClient();
+            ViewBag.LTP= client.GetAsync("https://online-gateway.ghn.vn/shiip/public-api/master-data/province").Result;
             var product = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
             ViewBag.img = LproImgApi.GetApi("ProductImg").FirstOrDefault(c=>c.IDProduct==id);
             ViewBag.data = product.FirstOrDefault(c => c.Id == id);
@@ -184,8 +189,8 @@ namespace QuanAoTheThaoC5.Controllers
             };
             CreateBillDetails(billdetails);
             var producttt = SessionService.GetObjFromSession(HttpContext.Session, "Cart");
-            var a = LproApi.GetApi("Product").FirstOrDefault(c => c.Id == id);
-            producttt.Clear();
+            var a = producttt.FirstOrDefault(c => c.Id == id);
+            producttt.Remove(a);
             SessionService.SetObjToJson(HttpContext.Session, "Cart", producttt);
 
             return RedirectToAction("Cart");
