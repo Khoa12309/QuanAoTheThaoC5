@@ -42,5 +42,14 @@
                         </div>
     </div>
     }
+    <select  class="form-select" aria-label="Default select example">
+        <option selected>Chọn TP</option>
+        @{
+            foreach (var item in ViewBag.LTP)
+            {
+                <option value="@item.ProvinceName">@item.ProvinceName</option>
+            }
+        }
+    </select>
 
 }
